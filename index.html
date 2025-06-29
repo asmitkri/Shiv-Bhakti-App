@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Shiv Bhakti App</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Hind:wght@500&display=swap');
+    body {
+      margin: 0;
+      font-family: 'Hind', sans-serif;
+      color: #fff;
+      background: linear-gradient(135deg, #000000, #1a1a1a);
+      overflow-x: hidden;
+      position: relative;
+    }
+    .symbol-bg {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      background-image: url('https://cdn-icons-png.flaticon.com/512/415/415733.png');
+      background-repeat: repeat;
+      background-size: 60px;
+      opacity: 0.03;
+      animation: scrollBG 30s linear infinite;
+    }
+    @keyframes scrollBG {
+      0% { background-position: 0 0; }
+      100% { background-position: 1000px 1000px; }
+    }
+    h1, h2 {
+      text-align: center;
+      color: #00ffd5;
+      text-shadow: 0 0 10px #00ffc3;
+    }
+    button {
+      padding: 10px 20px;
+      border: 2px solid #00ffc3;
+      border-radius: 10px;
+      background: rgba(0, 0, 0, 0.6);
+      color: #00ffc3;
+      font-weight: bold;
+      transition: 0.3s;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #00ffc3;
+      color: #000;
+      transform: scale(1.05);
+    }
+    .video-container, video, .image-container img {
+      width: 90%;
+      max-width: 400px;
+      margin: 10px auto;
+      display: block;
+      border-radius: 20px;
+      box-shadow: 0 0 20px #00ffc3;
+    }
+    .image-container {
+      text-align: center;
+    }
+    #shivling {
+      width: 150px;
+      height: 150px;
+      margin: auto;
+      background: radial-gradient(circle at center, #333 0%, #000 80%);
+      border-radius: 50%;
+      border: 4px solid #00ffc3;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 20px #00ffc3; }
+      50% { box-shadow: 0 0 50px #00ffc3; }
+    }
+    input[type="text"], input[type="file"] {
+      padding: 8px;
+      border-radius: 8px;
+      border: none;
+      outline: none;
+      margin: 5px;
+    }
+    #mantraText {
+      font-size: 22px;
+      font-weight: bold;
+      color: #00ffc3;
+      margin-top: 10px;
+      animation: fadeIn 0.5s ease-in-out;
+    }
+    @keyframes fadeIn {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <div class="symbol-bg"></div>
+  <h1>🔱 Har Har Mahadev 🔱</h1>
+  <h2>🕉️ 108 Belpatra Chadhaayein</h2>
+  <div id="shivling" draggable="true"></div>
+  <p>Chadhaaye Gaye Belpatra: <span id="counter">0</span>/108</p>
+  <audio id="chant" src="https://cdn.pixabay.com/download/audio/2022/10/26/audio_b8c07c7f3a.mp3?filename=har-har-mahadev-mix-124467.mp3" preload="auto"></audio>
+  <audio id="shivvoice" src="https://cdn.pixabay.com/download/audio/2022/06/13/audio_0f1b2fc424.mp3?filename=om-namah-shivaya-chanting-11494.mp3" preload="auto"></audio>
+  <div id="mantraText" style="display:none;">ॐ नमः शिवाय</div>
+
+  <h2>🎥 Shiv Bhakti Shorts</h2>
+  <div id="videos"></div>
+
+  <h2>🖼️ 30 Days Shiv Belpatra Thoughts</h2>
+  <div id="images"></div>
+
+  <h2>🧘‍♂️ Login to Upload Bhakti Video</h2>
+  <div id="loginSection">
+    <input type="text" id="username" placeholder="Apna Naam Ya ID Daalen" />
+    <button onclick="loginUser()">🔓 Login</button>
+  </div>
+  <div id="uploadSection" style="display:none;">
+    <p>👤 Logged in as: <span id="loggedUser"></span></p>
+    <input type="file" id="uploadInput" accept="video/mp4" />
+    <div id="userVideoContainer"></div>
+  </div>
+
+  <script>
+    const chant = document.getElementById("chant");
+    const shivVoice = document.getElementById("shivvoice");
+    const counter = document.getElementById("counter");
+    const mantraText = document.getElementById("mantraText");
+    const shivling = document.getElementById("shivling");
+    let count = 0;
+    let isPlaying = false;
+
+    shivling.addEventListener("dragend", () => {
+      if (isPlaying || count >= 108) return;
+      isPlaying = true;
+      count++;
+      counter.textContent = count;
+      chant.currentTime = 0;
+      chant.play();
+      shivVoice.currentTime = 0;
+      shivVoice.play();
+      mantraText.style.display = "block";
+      shivVoice.onended = () => {
+        isPlaying = false;
+        mantraText.style.display = "none";
+      };
+      if (count === 108) alert("🎉 Aapne 108 Bel Patra Chadhaaye! Har Har Mahadev!");
+    });
+
+    const shorts = Array.from({length: 35}, (_, i) => `https://cdn.pixabay.com/video/2023/07/11/1732${i}-838340970_large.mp4`);
+    const images = Array.from({length: 30}, (_, i) => `https://dummyimage.com/600x400/111/fff&text=Day+${i+1}+Thought`);
+
+    const videosDiv = document.getElementById("videos");
+    shorts.forEach(src => {
+      const container = document.createElement("div");
+      container.className = "video-container";
+
+      const v = document.createElement("video");
+      v.src = src;
+      v.controls = true;
+      container.appendChild(v);
+
+      const btnGrp = document.createElement("div");
+      btnGrp.innerHTML = `
+        <button onclick="downloadVideo('${src}')">📥 Download</button>
+        <button onclick="shareVideo('${src}')">📤 Share</button>
+      `;
+      container.appendChild(btnGrp);
+      videosDiv.appendChild(container);
+    });
+
+    function downloadVideo(url) {
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "shiv_short_video.mp4";
+      a.click();
+    }
+
+    function shareVideo(url) {
+      if (navigator.share) {
+        navigator.share({
+          title: "Shiv Bhakti Short",
+          text: "हर हर महादेव! एक सुंदर शिव भक्ति वीडियो देखें।",
+          url: url
+        });
+      } else {
+        alert("Sharing not supported on this device.");
+      }
+    }
+
+    const imagesDiv = document.getElementById("images");
+    images.forEach(src => {
+      const container = document.createElement("div");
+      container.className = "image-container";
+
+      const img = document.createElement("img");
+      img.src = src;
+      container.appendChild(img);
+
+      const btn = document.createElement("button");
+      btn.innerText = "📥 Save";
+      btn.onclick = () => {
+        const a = document.createElement("a");
+        a.href = src;
+        a.download = "shiv_belpatra_thought.jpg";
+        a.click();
+      };
+      container.appendChild(btn);
+
+      imagesDiv.appendChild(container);
+    });
+
+    let currentUser = null;
+    function loginUser() {
+      const user = document.getElementById("username").value.trim();
+      if (user) {
+        currentUser = user;
+        document.getElementById("loggedUser").textContent = currentUser;
+        document.getElementById("loginSection").style.display = "none";
+        document.getElementById("uploadSection").style.display = "block";
+      } else {
+        alert("Kripya apna naam ya ID daalein.");
+      }
+    }
+
+    const uploadInput = document.getElementById("uploadInput");
+    const userVideoContainer = document.getElementById("userVideoContainer");
+
+    uploadInput.addEventListener("change", (event) => {
+      const file = event.target.files[0];
+      if (file && file.type.startsWith("video/")) {
+        const videoURL = URL.createObjectURL(file);
+        const video = document.createElement("video");
+        video.src = videoURL;
+        video.controls = true;
+        video.style.width = "90%";
+        video.style.maxWidth = "400px";
+        video.style.marginTop = "10px";
+
+        const label = document.createElement("p");
+        label.textContent = `👤 Uploaded by: ${currentUser}`;
+        label.style.marginTop = "5px";
+        label.style.color = "#00ffc3";
+
+        userVideoContainer.innerHTML = "<h3>📽️ Aapka Upload Kiya Gaya Video:</h3>";
+        userVideoContainer.appendChild(video);
+        userVideoContainer.appendChild(label);
+      } else {
+        alert("Kripya sirf MP4 video upload karein.");
+      }
+    });
+  </script>
+</body>
+</html>

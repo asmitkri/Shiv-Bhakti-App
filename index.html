@@ -1,254 +1,1675 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Shiv Bhakti App</title>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Hind:wght@500&display=swap');
-    body {
-      margin: 0;
-      font-family: 'Hind', sans-serif;
-      color: #fff;
-      background: linear-gradient(135deg, #000000, #1a1a1a);
-      overflow-x: hidden;
-      position: relative;
-    }
-    .symbol-bg {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-      background-image: url('https://cdn-icons-png.flaticon.com/512/415/415733.png');
-      background-repeat: repeat;
-      background-size: 60px;
-      opacity: 0.03;
-      animation: scrollBG 30s linear infinite;
-    }
-    @keyframes scrollBG {
-      0% { background-position: 0 0; }
-      100% { background-position: 1000px 1000px; }
-    }
-    h1, h2 {
-      text-align: center;
-      color: #00ffd5;
-      text-shadow: 0 0 10px #00ffc3;
-    }
-    button {
-      padding: 10px 20px;
-      border: 2px solid #00ffc3;
-      border-radius: 10px;
-      background: rgba(0, 0, 0, 0.6);
-      color: #00ffc3;
-      font-weight: bold;
-      transition: 0.3s;
-      cursor: pointer;
-    }
-    button:hover {
-      background-color: #00ffc3;
-      color: #000;
-      transform: scale(1.05);
-    }
-    .video-container, video, .image-container img {
-      width: 90%;
-      max-width: 400px;
-      margin: 10px auto;
-      display: block;
-      border-radius: 20px;
-      box-shadow: 0 0 20px #00ffc3;
-    }
-    .image-container {
-      text-align: center;
-    }
-    #shivling {
-      width: 150px;
-      height: 150px;
-      margin: auto;
-      background: radial-gradient(circle at center, #333 0%, #000 80%);
-      border-radius: 50%;
-      border: 4px solid #00ffc3;
-      animation: pulse 2s infinite;
-    }
-    @keyframes pulse {
-      0%, 100% { box-shadow: 0 0 20px #00ffc3; }
-      50% { box-shadow: 0 0 50px #00ffc3; }
-    }
-    input[type="text"], input[type="file"] {
-      padding: 8px;
-      border-radius: 8px;
-      border: none;
-      outline: none;
-      margin: 5px;
-    }
-    #mantraText {
-      font-size: 22px;
-      font-weight: bold;
-      color: #00ffc3;
-      margin-top: 10px;
-      animation: fadeIn 0.5s ease-in-out;
-    }
-    @keyframes fadeIn {
-      0% { opacity: 0; }
-      100% { opacity: 1; }
-    }
-  </style>
+  <script type='text/javascript' src='//pl27011792.profitableratecpm.com/12/85/60/1285609c9a8ebbc3c7abc8dc5d56241c.js'></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shiv Pooja (Sawan) App</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts - Inter and Playfair Display -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <!-- React & ReactDOM CDN -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <!-- Babel for JSX transformation -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <style>
+        body { margin: 0; overflow-x: hidden; }
+        .font-inter { font-family: 'Inter', sans-serif; }
+        .font-serif { font-family: 'Playfair Display', serif; }
+
+        /* Animations */
+        .animate-fade-in { animation: fadeIn 0.5s ease-out forwards; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        .animate-fade-in-up { animation: fadeInUp 0.7s ease-out forwards; }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+        .animate-fade-in-out { animation: fadeInOut 2.5s ease-out forwards; }
+        @keyframes fadeInOut {
+            0% { opacity: 0; transform: translateY(10px); }
+            10% { opacity: 1; transform: translateY(0); }
+            90% { opacity: 1; transform: translateY(0); }
+            100% { opacity: 0; transform: translateY(-10px); }
+        }
+
+        .animate-pulse-text { animation: pulseText 2s infinite alternate; }
+        @keyframes pulseText { from { transform: scale(1); opacity: 1; } to { transform: scale(1.02); opacity: 0.95; } }
+
+        .animate-bounce-icon { animation: bounceIcon 1.5s infinite ease-in-out; }
+        @keyframes bounceIcon { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+
+        .animate-pulse-button { animation: pulseButton 2s infinite; }
+        @keyframes pulseButton {
+            0% { box-shadow: 0 0 0 0 rgba(168, 85, 247, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(168, 85, 247, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(168, 85, 247, 0); }
+        }
+
+        .animate-pulse-shivlinga { animation: pulseShivlinga 3s infinite alternate; }
+        @keyframes pulseShivlinga { 0% { transform: scale(1); } 50% { transform: scale(1.02); } 100% { transform: scale(1); } }
+
+        /* New Virtual Pooja Animations */
+        .animate-offer-belpatra-new { animation: offerBelpatraNew 0.8s ease-out forwards; }
+        @keyframes offerBelpatraNew {
+            0% { opacity: 1; transform: translate(0, -50px) rotate(0deg) scale(0.8); }
+            50% { opacity: 1; transform: translate(0, 20px) rotate(45deg) scale(1); }
+            100% { opacity: 0; transform: translate(0, 50px) rotate(90deg) scale(0.5); }
+        }
+
+        .animate-offer-flower-new { animation: offerFlowerNew 0.9s ease-out forwards; }
+        @keyframes offerFlowerNew {
+            0% { opacity: 1; transform: translate(0, -60px) rotate(0deg) scale(0.7); }
+            50% { opacity: 1; transform: translate(0, 10px) rotate(60deg) scale(1); }
+            100% { opacity: 0; transform: translate(0, 40px) rotate(120deg) scale(0.4); }
+        }
+
+        .animate-pour-milk { animation: pourMilk 1s ease-out forwards; }
+        @keyframes pourMilk {
+            0% { height: 0; opacity: 1; }
+            20% { height: 30px; opacity: 1; }
+            80% { height: 30px; opacity: 1; }
+            100% { height: 0; opacity: 0; }
+        }
+
+        .animate-pour-water { animation: pourWater 1s ease-out forwards; }
+        @keyframes pourWater {
+            0% { height: 0; opacity: 1; }
+            20% { height: 30px; opacity: 1; }
+            80% { height: 30px; opacity: 1; }
+            100% { height: 0; opacity: 0; }
+        }
+
+        .animate-pulse-glow { animation: pulseGlow 3s infinite alternate; }
+        @keyframes pulseGlow {
+            0% { transform: scale(0.8); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+            100% { transform: scale(0.8); opacity: 0.5; }
+        }
+
+        /* Custom button styles for gradients and shadows */
+        button {
+            border-radius: 9999px; /* Full rounded corners */
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        button:hover {
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        }
+        /* Ensure input checkbox is visible and styled */
+        input[type="checkbox"] {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            display: inline-block;
+            vertical-align: middle;
+            height: 1.5rem; /* h-6 */
+            width: 1.5rem;  /* w-6 */
+            background-color: #fff;
+            border: 2px solid #a78bfa; /* indigo-400 */
+            border-radius: 0.25rem; /* rounded */
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+        }
+        input[type="checkbox"]:checked {
+            background-color: #6366f1; /* indigo-600 */
+            border-color: #6366f1; /* indigo-600 */
+            background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M12.207 4.793a1 1 0 00-1.414 0L7 8.586 4.207 5.793a1 1 0 00-1.414 1.414l3.5 3.5a1 1 0 001.414 0l5-5a1 1 0 000-1.414z'/%3e%3c/svg%3e");
+            background-size: 100% 100%;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        input[type="checkbox"]:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.5); /* indigo-600 with opacity */
+        }
+
+        /* Dark mode specific checkbox styles */
+        .dark input[type="checkbox"] {
+            background-color: #4a5568; /* gray-700 */
+            border-color: #718096; /* gray-500 */
+        }
+        .dark input[type="checkbox"]:checked {
+            background-color: #34d399; /* green-500 */
+            border-color: #34d399; /* green-500 */
+        }
+        .dark input[type="checkbox"]:focus {
+            box-shadow: 0 0 0 3px rgba(52, 211, 153, 0.5); /* green-500 with opacity */
+        }
+    </style>
 </head>
 <body>
-  <div class="symbol-bg"></div>
-  <h1>🔱 Har Har Mahadev 🔱</h1>
-  <h2>🕉️ 108 Belpatra Chadhaayein</h2>
-  <div id="shivling" draggable="true"></div>
-  <p>Chadhaaye Gaye Belpatra: <span id="counter">0</span>/108</p>
-  <audio id="chant" src="https://cdn.pixabay.com/download/audio/2022/10/26/audio_b8c07c7f3a.mp3?filename=har-har-mahadev-mix-124467.mp3" preload="auto"></audio>
-  <audio id="shivvoice" src="https://cdn.pixabay.com/download/audio/2022/06/13/audio_0f1b2fc424.mp3?filename=om-namah-shivaya-chanting-11494.mp3" preload="auto"></audio>
-  <div id="mantraText" style="display:none;">ॐ नमः शिवाय</div>
+    <div id="root"></div>
 
-  <h2>🎥 Shiv Bhakti Shorts</h2>
-  <div id="videos"></div>
+    <script type="text/babel">
+        const { useState, useEffect, useRef, useCallback } = React;
 
-  <h2>🖼️ 30 Days Shiv Belpatra Thoughts</h2>
-  <div id="images"></div>
+        // Inline SVG Icons (replacing Lucide React)
+        const HomeIcon = (props) => (<svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 22V12h6v10M2 11L12 3l10 8v11h-5v-7H9v7H2z"/></svg>);
+        const BookOpen = (props) => (<svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h6z"/></svg>);
+        const ScrollText = (props) => (<svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M8 21h8a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2z"/><path d="M12 7h4"/><path d="M12 11h4"/><path d="M12 15h4"/></svg>);
+        const Sparkles = (props) => (<svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2L14.5 9L22 12L14.5 15L12 22L9.5 15L2 12L9.5 9L12 2z"/></svg>);
+        const HeartHandshake = (props) => (<svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/><path d="M12 5L12 19"/><path d="M12 5L12 19"/></svg>);
+        const CalendarDays = (props) => (<svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><path d="M8 14h.01"/><path d="M12 14h.01"/><path d="M16 14h.01"/><path d="M8 18h.01"/><path d="M12 18h.01"/><path d="M16 18h.01"/></svg>);
+        const ListChecks = (props) => (<svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M10 16L12 18L16 14"/><path d="M21 12L16 7"/><path d="M3 12L8 7"/><path d="M3 18L8 13"/><path d="M21 6L16 1L10 6"/></svg>);
+        const Info = (props) => (<svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>);
+        const Share2 = (props) => (<svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>);
+        const X = (props) => (<svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6L6 18"/><path d="M6 6L18 18"/></svg>);
+        const Sun = (props) => (<svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>);
+        const Moon = (props) => (<svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>);
+        const Volume2 = (props) => (<svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>);
+        const VolumeX = (props) => (<svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="22" y1="9" x2="16" y2="15"/><line x1="16" y1="9" x2="22" y2="15"/></svg>);
+        const Menu = (props) => (<svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>);
+        const RotateCcw = (props) => (<svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.76 2.75L3 8"/><path d="M3 3v5h5"/></svg>);
+        const Bell = (props) => (<svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>);
+        const Wind = (props) => (<svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2L14.5 9L22 12L14.5 15L12 22L9.5 15L2 12L9.5 9L12 2z"/></svg>);
 
-  <h2>🧘‍♂️ Login to Upload Bhakti Video</h2>
-  <div id="loginSection">
-    <input type="text" id="username" placeholder="Apna Naam Ya ID Daalen" />
-    <button onclick="loginUser()">🔓 Login</button>
-  </div>
-  <div id="uploadSection" style="display:none;">
-    <p>👤 Logged in as: <span id="loggedUser"></span></p>
-    <input type="file" id="uploadInput" accept="video/mp4" />
-    <div id="userVideoContainer"></div>
-  </div>
 
-  <script>
-    const chant = document.getElementById("chant");
-    const shivVoice = document.getElementById("shivvoice");
-    const counter = document.getElementById("counter");
-    const mantraText = document.getElementById("mantraText");
-    const shivling = document.getElementById("shivling");
-    let count = 0;
-    let isPlaying = false;
+        // Translations Object
+        const translations = {
+          en: {
+            home: {
+              welcome: "Jai Bholenath! 🙏",
+              tagline: "Embark on a divine journey this Sawan. This app is your companion for Shiv Pooja, mantras, and spiritual enlightenment. Your progress is NOT saved across sessions.",
+              featureCards: {
+                poojaGuide: { title: "Pooja Guide", description: "Step-by-step instructions for sacred rituals." },
+                sacredMantras: { title: "Sacred Mantras", description: "Powerful chants for peace and prosperity." },
+                virtualOffering: { title: "Virtual Offering", description: "Connect with Lord Shiva through digital devotion." },
+                sawanCalendar: { title: "Sawan Calendar", description: "Important dates and Somvar Vrat schedule." },
+                poojaChecklist: { title: "Pooja Checklist", description: "Ensure you have all essentials for your worship." },
+                aboutSawan: { title: "About Sawan", description: "Dive deeper into the significance of this holy month." },
+                dailyMantra: { title: "Daily Mantra", description: "A new divine chant and its meaning every day." },
+                vratTracker: { title: "Sawan Vrat Tracker", description: "Track your Somvar Vrats and spiritual journey." },
+                shivChalisa: { title: "Shiv Chalisa", description: "Read the powerful hymn dedicated to Lord Shiva." },
+              },
+              userIdMessage: "Your data is not saved across sessions.",
+            },
+            navbar: {
+              home: "Home",
+              poojaGuide: "Pooja Guide",
+              mantras: "Mantras",
+              aarti: "Aarti",
+              virtualPooja: "Virtual Pooja",
+              sawanCalendar: "Sawan Calendar",
+              poojaChecklist: "Pooja Checklist",
+              aboutSawan: "About Sawan",
+              dailyMantra: "Daily Mantra",
+              vratTracker: "Vrat Tracker",
+              shivChalisa: "Shiv Chalisa",
+              dailyFact: "Daily Fact",
+              backToMenu: "Back to Menu",
+              english: "English",
+              hindi: "हिन्दी",
+            },
+            poojaGuide: {
+              title: "Shiv Pooja Guide for Sawan",
+              steps: [
+                { step: "1. Preparation", description: "Clean the pooja area. Gather essentials like a Shivlinga (or image), Bel Patra, flowers (especially Dhatura and Akand), milk, water, honey, ghee, sugar, incense, lamp, sandalwood paste, and sacred ash (Bhasma)." },
+                { step: "2. Sankalp (Intention)", description: "Take a vow to perform the pooja with devotion, stating your purpose." },
+                { step: "3. Abhishekam", description: "Bathe the Shivlinga with water, then milk, curd, ghee, honey, and sugar, one by one. Each offering should be followed by water. While performing Abhishekam, continuously chant 'Om Namah Shivaya'." },
+                { step: "4. Offerings", description: "Offer Bel Patra (3 leaves joined at the stem), fresh flowers, Dhatura, Akand, sandalwood paste, and Bhasma to the Shivlinga with devotion." },
+                { step: "5. Incense and Lamp", description: "Light incense sticks (agarbatti) and a lamp (diya) with ghee or oil, symbolizing purity and light." },
+                { step: "6. Mantra Chanting", description: "Chant the Maha Mrityunjaya Mantra or other Shiv Mantras (refer to Mantras section) for a specified number of times (e.g., 108 times) with full concentration." },
+                { step: "7. Aarti", description: "Perform Shiv Aarti using a lamp with camphor or ghee, circling it before the deity. (See Aarti section for text)." },
+                { step: "8. Prasad", description: "Offer fruits, sweets, or other pure food as Prasad (sacred offering) and distribute it among family members and devotees." },
+                { step: "9. Prayer and Meditation", description: "Conclude with silent prayer and meditation, seeking Lord Shiva's blessings for well-being, peace, and spiritual growth." },
+              ]
+            },
+            mantras: {
+              title: "Sacred Shiv Mantras",
+              omNamahShivaya: {
+                title: "Om Namah Shivaya",
+                sanskrit: "ॐ नमः शिवाय",
+                meaning: "I bow to Lord Shiva. This is the most popular and potent mantra, representing devotion and surrender to the divine."
+              },
+              mahaMrityunjaya: {
+                title: "Maha Mrityunjaya Mantra",
+                sanskrit: "ॐ त्र्यम्बकं यजामहे सुगन्धिं पुष्टिवर्धनम्। उर्वारुकमिव बन्धनान् मृत्योर्मुक्षीय मामृतात्॥",
+                meaning: "We worship the three-eyed Lord Shiva, who is fragrant and nourishes all beings. May He liberate us from death for the sake of immortality, just as a cucumber is severed from its bondage to the creeper. This mantra is for longevity, health, and liberation."
+              },
+              rudraMantra: {
+                title: "Rudra Mantra",
+                sanskrit: "ॐ नमो भगवते रुद्राय",
+                meaning: "I bow to Lord Rudra (a fierce and benevolent form of Shiva). This mantra invokes the powerful aspect of Shiva for protection and strength."
+              },
+              shivGayatri: {
+                title: "Shiv Gayatri Mantra",
+                sanskrit: "ॐ तत्पुरुषाय विद्महे महादेवाय धीमहि तन्नो रुद्रः प्रचोदयात्॥",
+                meaning: "Om, Let me meditate on the great Purusha (Supreme Being), Oh, greatest God (Mahadeva), give me higher intellect, and let God Rudra illuminate my mind. This mantra seeks divine wisdom and enlightenment."
+              },
+              copyMantra: "Copy Mantra",
+              playAudio: "Play Audio (Placeholder)",
+              pauseAudio: "Pause Audio",
+            },
+            aarti: {
+              title: "Shiv Aarti",
+              text: `Jai Shiv Omkara, Prabhu Jai Shiv Omkara,
+Brahma Vishnu Sadashiv, Ardhangi Dhara. Om Jai Shiv Omkara.
+Ekanan Chaturanan Panchanan Raje,
+Hansanan Garudaasan Vrishvahan Saje. Om Jai Shiv Omkara.
+Do Bhuj Charu Chaturbhuj Dashbhuj Ati Sohe,
+Trigun Roop Nirakhte Tribhuvan Jan Mohe. Om Jai Shiv Omkara.
+Akshamala Vanmala Mundmala Dhari,
+Tripurari Kansari Kar Mala Dhari. Om Jai Shiv Omkara.
+Shvetambar Pitambar Baghambar Ange,
+Sankadik Garunadik Bhootadik Sange. Om Jai Shiv Omkara.
+Kar Madhye Kamandal Chakra Trishuldhari,
+Sukhkari Dukhhari Jagpalankari. Om Jai Shiv Omkara.
+Brahma Vishnu Sadashiv Janat Aviveka,
+Pranavakshar Ke Madhye Ye Teenon Eka. Om Jai Shiv Omkara.
+Lakshmi Va Gauri Sab Sanghi Viraje,
+Kailash Mein Jhalak Jhalke, Shashibhala Saje. Om Jai Shiv Omkara.
+Kashi Mein Vishwanath Viraje, Nandi Bramhachari,
+Nit Uth Darshan Paavat, Mahima Ati Bhari. Om Jai Shiv Omkara.
+Trigun Swami Ki Aarti Jo Koi Nar Gaave,
+Kahat Shivanand Swami, Manvanchhit Phal Paave. Om Jai Shiv Omkara.`
+            },
+            virtualPooja: {
+              title: "Virtual Pooja Offering",
+              description: "Offer your devotion to Lord Shiva by clicking on the sacred items below.",
+              offerBelPatra: "Offer Bel Patra",
+              offerMilk: "Offer Milk",
+              offerWater: "Offer Water",
+              offerFlowers: "Offer Flowers",
+              belPatraCount: "Bel Patra:",
+              milkCount: "Milk:",
+              waterCount: "Water:",
+              flowersCount: "Flowers:",
+              messages: {
+                belPatra: "Bel Patra offered! Har Har Mahadev!",
+                milk: "Milk offered! Om Namah Shivaya!",
+                water: "Water offered! Jai Bholenath!",
+                flowers: "Flowers offered! Shiv Shambhu!",
+                complete: "Offering complete!"
+              },
+              resetOfferings: "Reset Offerings",
+              resetConfirmation: "Are you sure you want to reset all your virtual offerings?",
+              yes: "Yes",
+              no: "No",
+              bellRing: "Temple bell ringing...",
+              conchBlow: "Conch blowing...",
+            },
+            sawanCalendar: {
+              title: "Sawan 2025 Calendar",
+              description: "Mark your calendars for these auspicious dates during the holy month of Sawan.",
+              tableHeaders: {
+                date: "Date",
+                day: "Day",
+                significance: "Significance"
+              },
+              notes: "*Dates are approximate and may vary slightly based on regional calendars.",
+              dates: [
+                { date: 'July 21, 2025', day: 'Monday', significance: 'Sawan Begins (First Somvar Vrat)' },
+                { date: 'July 28, 2025', day: 'Monday', significance: 'Second Sawan Somvar Vrat' },
+                { date: 'August 4, 2025', day: 'Monday', significance: 'Third Sawan Somvar Vrat' },
+                { date: 'August 11, 2025', day: 'Monday', significance: 'Fourth Sawan Somvar Vrat' },
+                { date: 'August 18, 2025', day: 'Monday', significance: 'Sawan Ends (Fifth Somvar Vrat)' },
+              ]
+            },
+            poojaChecklist: {
+              title: "Pooja Samagri Checklist",
+              description: "Use this checklist to ensure you have all the necessary items for your Shiv Pooja. Your progress is NOT saved across sessions.",
+              items: [
+                { id: 'item1', name: 'Shivlinga / Lord Shiva Idol/Picture' },
+                { id: 'item2', name: 'Bel Patra (Bilva Leaves)' },
+                { id: 'item3', name: 'Fresh Flowers (especially Dhatura and Akand)' },
+                { id: 'item4', name: 'Milk' },
+                { id: 'item5', name: 'Water (Gangajal if available)' },
+                { id: 'item6', name: 'Curd (Dahi)' },
+                { id: 'item7', name: 'Ghee (Clarified Butter)' },
+                { id: 'item8', name: 'Honey' },
+                { id: 'item9', name: 'Sugar / Jaggery' },
+                { id: 'item10', name: 'Sandalwood Paste (Chandan)' },
+                { id: 'item11', name: 'Sacred Ash (Bhasma / Vibhuti)' },
+                { id: 'item12', name: 'Incense Sticks (Agarbatti)' },
+                { id: 'item13', name: 'Lamp (Diya) & Oil/Ghee for lighting' },
+                { id: 'item14', name: 'Cotton Wicks' },
+                { id: 'item15', name: 'Camphor (Kapur) for Aarti' },
+                { id: 'item16', name: 'Fruits & Sweets for Prasad' },
+                { id: 'item17', name: 'Betel Leaves & Areca Nuts' },
+                { id: 'item18', name: 'Rice Grains (Akshat)' },
+                { id: 'item19', name: 'Coconut' },
+                { id: 'item20', name: 'Red Thread (Mouli / Kalawa)' },
+              ]
+            },
+            aboutSawan: {
+              title: "About the Holy Month of Sawan (Shravan)",
+              intro: "Sawan, also known as Shravan, is the fifth month in the Hindu calendar and is considered the most auspicious month for worshipping Lord Shiva. It typically falls between July and August. This month is highly revered by devotees across India and beyond.",
+              significanceTitle: "Significance of Sawan",
+              points: [
+                { strong: "Lord Shiva's Favorite Month:", text: "It is believed that Lord Shiva drank the poison (Halahala) that emerged during the Samudra Manthan (churning of the cosmic ocean) to save the universe. This act of self-sacrifice happened during Sawan, making it His favorite month." },
+                { strong: "Blessings for Devotees:", text: "Worshipping Lord Shiva during Sawan is believed to bring immense blessings, fulfill desires, and alleviate sufferings." },
+                { strong: "Somvar Vrat:", text: "Observing fasts on Mondays (Somvar Vrat) during Sawan is highly significant. Unmarried women observe these fasts to find a good husband, while married women observe them for the well-being and longevity of their spouses." },
+                { strong: "Kanwar Yatra:", text: "Millions of devotees undertake the Kanwar Yatra, a pilgrimage to collect sacred water from the Ganges River and offer it to Shivlingas in various temples." },
+                { strong: "Nature's Renewal:", text: "Sawan coincides with the monsoon season, bringing lush greenery and a sense of renewal, symbolizing prosperity and growth, which are also associated with Lord Shiva." },
+              ]
+            },
+            dailyFactModal: {
+              title: "Daily Sawan Fact",
+              gotIt: "Got It! Jai Bholenath!",
+            },
+            dailyMantra: {
+              title: "Daily Divine Mantra/Shloka",
+              playAudio: "Play Audio (Placeholder)",
+              meaning: "Meaning:",
+              transliteration: "Transliteration:",
+              mantras: [
+                {
+                  sanskrit: "ॐ नमः शिवाय",
+                  transliteration: "Om Namah Shivaya",
+                  meaning: "I bow to Lord Shiva. This is the most popular and potent mantra, representing devotion and surrender to the divine."
+                },
+                {
+                  sanskrit: "महामृत्युंजयमंत्र",
+                  transliteration: "Maha Mrityunjaya Mantra",
+                  meaning: "We worship the three-eyed Lord Shiva, who is fragrant and nourishes all beings. May He liberate us from death for the sake of immortality, just as a cucumber is severed from its bondage to the creeper. This mantra is for longevity, health, and liberation."
+                },
+                {
+                  sanskrit: "करचरणकृतं वाक्कायजं कर्मजं वा श्रवणनयनजं वा मानसं वापराधम्। विहितमविहितं वा सर्वमेतत्क्षमस्व जय जय करुणाब्धे श्री महादेव शम्भो॥",
+                  transliteration: "Karacharana Kritam Vaa Kaayajam Karmajam Vaa Shravana Nayanam Vaa Maanasam Vaa Paradham. Vihitam Avihitam Vaa Sarvam Etat Kshamasva Jaya Jaya Karunabdhe Shri Mahadeva Shambho॥",
+                  meaning: "O Lord Shiva, please forgive all the sins committed by my hands, feet, speech, body, actions, ears, eyes, or mind, whether they were prescribed or not. Glory, glory to you, O Mahadeva, the ocean of compassion, Shambho!"
+                },
+                {
+                  sanskrit: "नागेन्द्रहाराय त्रिलोचनाय भस्माङ्गरागाय महेश्वराय। नित्याय शुद्धाय दिगम्बराय तस्मै 'न' काराय नमः शिवाय॥",
+                  transliteration: "Nagendra Haraya Trilochanaya Bhasmangaragaya Maheshwaraya. Nityaya Shuddhaya Digambaraya Tasmai 'Na' Karaya Namah Shivaya॥",
+                  meaning: "I bow to Shiva, who wears the king of snakes as a garland, who has three eyes, whose body is smeared with sacred ash, who is the great Lord, who is eternal, pure, and who is clothed by the directions (naked). I bow to that 'Na' sound in Om Namah Shivaya."
+                },
+              ]
+            },
+            vratTracker: {
+              title: "Sawan Somvar Vrat Tracker",
+              description: "Mark the Mondays you have observed fasts during Sawan. Your progress is NOT saved across sessions.",
+              monday: "Monday",
+              observed: "Observed",
+              notObserved: "Not Observed",
+              fastsObserved: "Fasts Observed:",
+              totalFasts: "Total Fasts:",
+            },
+            shivChalisa: {
+              title: "Shiv Chalisa",
+              fontSize: "Font Size:",
+              increaseFont: "Increase Font",
+              decreaseFont: "Decrease Font",
+              text: `॥ दोहा ॥
+श्री गणेश गिरिजा सुवन, मंगल मूल सुजान।
+कहत अयोध्यादास तुम, देहु अभय वरदान॥
 
-    shivling.addEventListener("dragend", () => {
-      if (isPlaying || count >= 108) return;
-      isPlaying = true;
-      count++;
-      counter.textContent = count;
-      chant.currentTime = 0;
-      chant.play();
-      shivVoice.currentTime = 0;
-      shivVoice.play();
-      mantraText.style.display = "block";
-      shivVoice.onended = () => {
-        isPlaying = false;
-        mantraText.style.display = "none";
-      };
-      if (count === 108) alert("🎉 Aapne 108 Bel Patra Chadhaaye! Har Har Mahadev!");
-    });
+॥ चौपाई ॥
+जय गिरिजा पति दीन दयाला। सदा करत संतन प्रतिपाला॥
+भाल चंद्रमा सोहत नीके। कानन कुंडल नागफनी के॥
+अंग गौर शिर गंग बहाये। मुंडमाल तन क्षार लगाये॥
+वस्त्र खाल बाघंबर सोहे। छवि को देखि नाग मन मोहे॥
+मैना मातु की ह्वै दुलारी। बाम अंग सोहत शिव प्यारी॥
+कर त्रिशूल सोहत छवि भारी। करत सदा शत्रुन क्षयकारी॥
+नंदी गणेश सोहैं तहं कैसे। सागर मध्य कमल हों जैसे॥
+कार्तिक श्याम और गणराऊ। या छवि को कहि जात न काऊ॥
+देवन जब ही जाय पुकारा। तब ही दुख प्रभु आप निवारा॥
+किया उपद्रव तारक भारी। देवन सब मिलि तुमहिं जुहारी॥
+तुरत षडानन आप पठायो। लवनिमेष महं मारि गिरायो॥
+आप जलंधर असुर संहारा। सुयश तुम्हार विदित संसारा॥
+त्रिपुरासुर सन युद्ध मचाई। सबहिं कृपा कर लीन बचाई॥
+किया तपस्या भागीरथ भारी। पूरब प्रतिज्ञा तासु पुरारी॥
+दानिन महं तुम सम कोउ नाहीं। सेवक स्तुति करत सदाहीं॥
+वेद नाम महिमा तव गाई। अकथ अनादि भेद नहिं पाई॥
+प्रगटी उदधि मंथन ते ज्वाला। जरे सुरासुर भये विहाला॥
+कीन्ह दया तहं करी सहाई। नीलकंठ तब नाम कहाई॥
+पूजन रामचंद्र जब कीन्हा। जीत के लंक विभीषण दीन्हा॥
+सहस कमल से पूजत पूजा। कीन्ह परीक्षा तब प्रभु दूजा॥
+एक कमल प्रभु राखेउ जोई। कमल नयन पूजन चहं सोई॥
+कठिन भक्ति देखी प्रभु शंकर। भये प्रसन्न दिए इच्छित वर॥
+जय जय जय अविनाशी। करत कृपा सब के घट वासी॥
+दुष्ट सकल नित मोहि सतावें। भ्रमित रहत मोहि चैन न आवे॥
+त्राहि त्राहि मैं नाथ पुकारो। यहि अवसर मोहि आन उबारो॥
+मात-पिता भ्राता सब कोई। संकट में पूछत नहिं कोई॥
+स्वामी एक है आस तुम्हारी। आय हरहु अब संकट भारी॥
+धन निर्धन को देत सदा हीं। जो कोई जांचे सो फल पाहीं॥
+अस्तुति केहि विधि करौं तुम्हारी। क्षमहु नाथ अब चूक हमारी॥
+शंकर हो संकट के नाशन। मंगल कारण विघ्न विनाशन॥
+योगी यति मुनि ध्यान लगावें। नारद शारद शीश नवावें॥
+नमो नमो जय नमो शिवाय। सुर ब्रह्मादिक पार न पाय॥
+जो यह पाठ करे मन लाई। ता पर होत है शंभु सहाई॥
+ऋणिया जो कोई हो अधिकारी। पाठ करे सो पावन हारी॥
+पुत्र हीन कर इच्छा कोई। निश्चय शिव प्रसाद ते होई॥
+पंडित त्रयोदशी को लावे। ध्यान पूर्वक होम करावे॥
+त्रयोदशी व्रत करे हमेशा। ताके तन नहीं रहे कलेशा॥
+धूप दीप नैवेद्य चढ़ावे। शंकर सम्मुख पाठ सुनावे॥
+जन्म जन्म के पाप नसावे। अंत धाम शिवपुर में पावे॥
+कahat Ayodhyadas as Tumhari. Jaani Sakal Dukh Harahu Hamari॥
 
-    const shorts = Array.from({length: 35}, (_, i) => `https://cdn.pixabay.com/video/2023/07/11/1732${i}-838340970_large.mp4`);
-    const images = Array.from({length: 30}, (_, i) => `https://dummyimage.com/600x400/111/fff&text=Day+${i+1}+Thought`);
+॥ दोहा ॥
+Nitya Niyam Kar Pratah Hi, Path Karo Chalisa.
+Tum Meri Manokamna, Purn Karo Jagdish॥`
+            },
+            shareApp: "Share App",
+            loading: "Loading divine blessings...",
+          },
+          hi: {
+            home: {
+              welcome: "जय भोलेनाथ! 🙏",
+              tagline: "इस सावन में एक दिव्य यात्रा पर निकलें। यह ऐप शिव पूजा, मंत्रों और आध्यात्मिक ज्ञान के लिए आपका साथी है। आपकी प्रगति सत्रों में सहेजी नहीं जाएगी।",
+              featureCards: {
+                poojaGuide: { title: "पूजा मार्गदर्शिका", description: "पवित्र अनुष्ठानों के लिए चरण-दर-चरण निर्देश।" },
+                sacredMantras: { title: "पवित्र मंत्र", description: "शांति और समृद्धि के लिए शक्तिशाली मंत्र।" },
+                virtualOffering: { title: "आभासी अर्पण", description: "डिजिटल भक्ति के माध्यम से भगवान शिव से जुड़ें।" },
+                sawanCalendar: { title: "सावन कैलेंडर", description: "महत्वपूर्ण तिथियां और सोमवार व्रत अनुसूची।" },
+                poojaChecklist: { title: "पूजा चेकलिस्ट", description: "सुनिश्चित करें कि आपके पास अपनी पूजा के लिए सभी आवश्यक वस्तुएं हैं।" },
+                aboutSawan: { title: "सावन के बारे में", description: "इस पवित्र महीने के महत्व में गहराई से उतरें।" },
+                dailyMantra: { title: "दैनिक मंत्र", description: "हर दिन एक नया दिव्य मंत्र और उसका अर्थ।" },
+                vratTracker: { title: "सावन व्रत ट्रैकर", description: "अपने सोमवार व्रतों और आध्यात्मिक यात्रा को ट्रैक करें।" },
+                shivChalisa: { title: "शिव चालीसा", description: "भगवान शिव को समर्पित शक्तिशाली स्तोत्र पढ़ें।" },
+              },
+              userIdMessage: "आपका डेटा सत्रों में सहेजा नहीं जाएगा।",
+            },
+            navbar: {
+              home: "होम",
+              poojaGuide: "पूजा मार्गदर्शिका",
+              mantras: "मंत्र",
+              aarti: "आरती",
+              virtualPooja: "आभासी पूजा",
+              sawanCalendar: "सावन कैलेंडर",
+              poojaChecklist: "पूजा चेकलिस्ट",
+              aboutSawan: "सावन के बारे में",
+              dailyMantra: "दैनिक मंत्र",
+              vratTracker: "व्रत ट्रैकर",
+              shivChalisa: "शिव चालीसा",
+              dailyFact: "दैनिक तथ्य",
+              backToMenu: "मेनू पर वापस",
+              english: "English",
+              hindi: "हिन्दी",
+            },
+            poojaGuide: {
+              title: "सावन के लिए शिव पूजा मार्गदर्शिका",
+              steps: [
+                { step: "1. तैयारी", description: "पूजा क्षेत्र को साफ करें। शिवलिंग (या चित्र), बेल पत्र, फूल (विशेषकर धतूरा और आकंद), दूध, जल, शहद, घी, चीनी, धूप, दीपक, चंदन का लेप और पवित्र भस्म जैसी आवश्यक सामग्री इकट्ठा करें।" },
+                { step: "2. संकल्प", description: "भक्ति के साथ पूजा करने का संकल्प लें, अपने उद्देश्य को बताते हुए।" },
+                { step: "3. अभिषेक", description: "शिवलिंग को एक-एक करके जल, फिर दूध, दही, घी, शहद और चीनी से स्नान कराएं। प्रत्येक अर्पण के बाद जल चढ़ाएं। अभिषेक करते समय लगातार 'ॐ नमः शिवाय' का जाप करें।" },
+                { step: "4. अर्पण", description: "शिवलिंग पर बेल पत्र (तना पर जुड़े 3 पत्ते), ताजे फूल, धतूरा, आकंद, चंदन का लेप और भस्म भक्ति के साथ चढ़ाएं।" },
+                { step: "5. धूप और दीपक", description: "शुद्धता और प्रकाश का प्रतीक धूपबत्ती और घी या तेल का दीपक जलाएं।" },
+                { step: "6. मंत्र जाप", description: "महामृत्युंजय मंत्र या अन्य शिव मंत्रों (मंत्र अनुभाग देखें) का निर्धारित संख्या में (जैसे 108 बार) पूर्ण एकाग्रता के साथ जाप करें।" },
+                { step: "7. आरती", description: "कपूर या घी के दीपक का उपयोग करके शिव आरती करें, इसे देवता के सामने घुमाते हुए। (पाठ के लिए आरती अनुभाग देखें)।" },
+                { step: "8. प्रसाद", description: "फल, मिठाई या अन्य शुद्ध भोजन प्रसाद के रूप में चढ़ाएं और इसे परिवार के सदस्यों और भक्तों के बीच वितरित करें।" },
+                { step: "9. प्रार्थना और ध्यान", description: "कल्याण, शांति और आध्यात्मिक विकास के लिए भगवान शिव का आशीर्वाद मांगते हुए मौन प्रार्थना और ध्यान के साथ समाप्त करें।" },
+              ]
+            },
+            mantras: {
+              title: "पवित्र शिव मंत्र",
+              omNamahShivaya: {
+                title: "ॐ नमः शिवाय",
+                sanskrit: "ॐ नमः शिवाय",
+                meaning: "मैं भगवान शिव को नमन करता हूं। यह सबसे लोकप्रिय और शक्तिशाली मंत्र है, जो भक्ति और दिव्य के प्रति समर्पण का प्रतिनिधित्व करता है।"
+              },
+              mahaMrityunjaya: {
+                title: "महामृत्युंजय मंत्र",
+                sanskrit: "ॐ त्र्यम्बकं यजामहे सुगन्धिं पुष्टिवर्धनम्। उर्वारुकमिव बन्धनान् मृत्योर्मुक्षीय मामृतात्॥",
+                meaning: "हम त्रिनेत्रधारी भगवान शिव की पूजा करते हैं, जो सुगंधित हैं और सभी प्राणियों का पोषण करते हैं। वे हमें मृत्यु से अमरता के लिए मुक्त करें, जैसे एक ककड़ी अपनी बेल के बंधन से अलग हो जाती है। यह मंत्र लंबी उम्र, स्वास्थ्य और मुक्ति के लिए है।"
+              },
+              rudraMantra: {
+                title: "रुद्र मंत्र",
+                sanskrit: "ॐ नमो भगवते रुद्राय",
+                meaning: "मैं भगवान रुद्र (शिव का एक उग्र और परोपकारी रूप) को नमन करता हूं। यह मंत्र सुरक्षा और शक्ति के लिए शिव के शक्तिशाली पहलू का आह्वान करता है।"
+              },
+              shivGayatri: {
+                title: "शिव गायत्री मंत्र",
+                sanskrit: "ॐ तत्पुरुषाय विद्महे महादेवाय धीमहि तन्नो रुद्रः प्रचोदयात्॥",
+                meaning: "ॐ, मुझे उस महान पुरुष (परम सत्ता) पर ध्यान करने दें, हे सबसे महान भगवान (महादेव), मुझे उच्च बुद्धि दें, और भगवान रुद्र मेरे मन को प्रकाशित करें। यह मंत्र दिव्य ज्ञान और आत्मज्ञान की तलाश करता है।"
+              },
+              copyMantra: "मंत्र कॉपी करें",
+              playAudio: "ऑडियो चलाएं (प्लेसहोल्डर)",
+              pauseAudio: "ऑडियो रोकें",
+            },
+            aarti: {
+              title: "शिव आरती",
+              text: `जय शिव ओंकारा, प्रभु जय शिव ओंकारा,
+ब्रह्मा विष्णु सदाशिव, अर्धांगी धारा। ॐ जय शिव ओंकारा॥
+एकानन चतुरानन पंचानन राजे,
+हंसासन गरूड़ासन वृषवाहन साजे। ॐ जय शिव ओंकारा॥
+दो भुज चारु चतुर्भुज दशभुज अति सोहे,
+त्रिगुण रूप निरखते त्रिभुवन जन मोहे। ॐ जय शिव ओंकारा॥
+अक्षमाला वनमाला मुंडमाला धारी,
+त्रिपुरारी कंसारी कर माला धारी। ॐ जय शिव ओंकारा॥
+श्वेताम्बर पीताम्बर बाघम्बर अंगें,
+सनकादिक गरूणादिक भूतादिक संगें। ॐ जय शिव ओंकारा॥
+कर मध्य कमंडल चक्र त्रिशूलधारी,
+सुखकारी दुखहारी जगपालनकारी। ॐ जय शिव ओंकारा॥
+ब्रह्मा विष्णु सदाशिव जानत अविवेका,
+प्रणवाक्षर के मध्य ये तीनों एका। ॐ जय शिव ओंकारा॥
+लक्ष्मी व गौरी सब संगी विराजे,
+कैलाश में झलक झलके, शशिभाला साजे। ॐ जय शिव ओंकारा॥
+काशी में विश्वनाथ विराजे, नंदी ब्रह्मचारी,
+नित उठ दर्शन पावत, महिमा अति भारी। ॐ जय शिव ओंकारा॥
+त्रिगुण स्वामी की आरती जो कोई नर गावे,
+कहत शिवानंद स्वामी, मनवांछित फल पावे। ॐ जय शिव ओंकारा॥`
+            },
+            virtualPooja: {
+              title: "आभासी पूजा अर्पण",
+              description: "नीचे दिए गए पवित्र वस्तुओं पर क्लिक करके भगवान शिव को अपनी भक्ति अर्पित करें।",
+              offerBelPatra: "बेल पत्र चढ़ाएं",
+              offerMilk: "दूध चढ़ाएं",
+              offerWater: "जल चढ़ाएं",
+              offerFlowers: "फूल चढ़ाएं",
+              belPatraCount: "बेल पत्र:",
+              milkCount: "दूध:",
+              waterCount: "जल:",
+              flowersCount: "फूल:",
+              messages: {
+                belPatra: "बेल पत्र चढ़ाया गया! हर हर महादेव!",
+                milk: "दूध चढ़ाया गया! ॐ नमः शिवाय!",
+                water: "जल चढ़ाया गया! जय भोलेनाथ!",
+                flowers: "फूल चढ़ाए गए! शिव शंभु!",
+                complete: "अर्पण पूर्ण!"
+              },
+              resetOfferings: "अर्पण रीसेट करें",
+              resetConfirmation: "क्या आप वाकई अपने सभी आभासी अर्पण रीसेट करना चाहते हैं?",
+              yes: "हाँ",
+              no: "नहीं",
+              bellRing: "मंदिर की घंटी बज रही है...",
+              conchBlow: "शंख बज रहा है...",
+            },
+            sawanCalendar: {
+              title: "सावन 2025 कैलेंडर",
+              description: "सावन के पवित्र महीने के दौरान इन शुभ तिथियों को अपने कैलेंडर में चिह्नित करें।",
+              tableHeaders: {
+                date: "दिनांक",
+                day: "दिन",
+                significance: "महत्व"
+              },
+              notes: "*तिथियां अनुमानित हैं और क्षेत्रीय कैलेंडरों के आधार पर थोड़ी भिन्न हो सकती हैं।",
+              dates: [
+                { date: 'जुलाई 21, 2025', day: 'सोमवार', significance: 'सावन प्रारंभ (पहला सोमवार व्रत)' },
+                { date: 'जुलाई 28, 2025', day: 'सोमवार', significance: 'दूसरा सावन सोमवार व्रत' },
+                { date: 'अगस्त 4, 2025', day: 'सोमवार', significance: 'तीसरा सावन सोमवार व्रत' },
+                { date: 'अगस्त 11, 2025', day: 'सोमवार', significance: 'चौथा सावन सोमवार व्रत' },
+                { date: 'अगस्त 18, 2025', day: 'सोमवार', significance: 'सावन समाप्त (पांचवां सोमवार व्रत)' },
+              ]
+            },
+            poojaChecklist: {
+              title: "पूजा सामग्री चेकलिस्ट",
+              description: "अपनी शिव पूजा के लिए सभी आवश्यक वस्तुएं सुनिश्चित करने के लिए इस चेकलिस्ट का उपयोग करें। आपकी प्रगति सत्रों में सहेजी नहीं जाएगी।",
+              items: [
+                { id: 'item1', name: 'शिवलिंग / भगवान शिव की मूर्ति/चित्र' },
+                { id: 'item2', name: 'बेल पत्र' },
+                { id: 'item3', name: 'ताजे फूल (विशेषकर धतूरा, आकंद)' },
+                { id: 'item4', name: 'दूध' },
+                { id: 'item5', name: 'जल (गंगाजल उपलब्ध हो तो)' },
+                { id: 'item6', name: 'दही' },
+                { id: 'item7', name: 'घी' },
+                { id: 'item8', name: 'शहद' },
+                { id: 'item9', name: 'चीनी / गुड़' },
+                { id: 'item10', name: 'चंदन का लेप' },
+                { id: 'item11', name: 'पवित्र भस्म / विभूति' },
+                { id: 'item12', name: 'धूपबत्ती' },
+                { id: 'item13', name: 'दीपक और तेल/घी जलाने के लिए' },
+                { id: 'item14', name: 'कपास की बत्तियां' },
+                { id: 'item15', name: 'आरती के लिए कपूर' },
+                { id: 'item16', name: 'प्रसाद के लिए फल और मिठाई' },
+                { id: 'item17', name: 'पान के पत्ते और सुपारी' },
+                { id: 'item18', name: 'चावल के दाने (अक्षत)' },
+                { id: 'item19', name: 'नारियल' },
+                { id: 'item20', name: 'लाल धागा (मौली / कलावा)' },
+              ]
+            },
+            aboutSawan: {
+              title: "सावन (श्रावण) के पवित्र महीने के बारे में",
+              intro: "सावन, जिसे श्रावण भी कहा जाता है, हिंदू कैलेंडर का पांचवां महीना है और इसे भगवान शिव की पूजा के लिए सबसे शुभ महीना माना जाता है। यह आमतौर पर जुलाई और अगस्त के बीच आता है। इस महीने को पूरे भारत और उससे आगे के भक्तों द्वारा अत्यधिक revered किया जाता है।",
+              significanceTitle: "सावन का महत्व",
+              points: [
+                { strong: "भगवान शिव का पसंदीदा महीना:", text: "माना जाता है कि भगवान शिव ने समुद्र मंथन (ब्रह्मांडीय महासागर के मंथन) के दौरान निकले विष (हलाहल) को ब्रह्मांड को बचाने के लिए पिया था। त्याग का यह कार्य सावन के दौरान हुआ था, जिससे यह उनका पसंदीदा महीना बन गया।" },
+                { strong: "भक्तों के लिए आशीर्वाद:", text: "सावन के दौरान भगवान शिव की पूजा करने से अपार आशीर्वाद मिलता है, इच्छाएं पूरी होती हैं और दुख दूर होते हैं।" },
+                { strong: "सोमवार व्रत:", text: "सावन के दौरान सोमवार (सोमवार व्रत) को व्रत रखना अत्यधिक महत्वपूर्ण है। अविवाहित महिलाएं एक अच्छे पति को खोजने के लिए ये व्रत रखती हैं, जबकि विवाहित महिलाएं अपने पति के कल्याण और लंबी उम्र के लिए ये व्रत रखती हैं।" },
+                { strong: "कांवड़ यात्रा:", text: "लाखों भक्त कांवड़ यात्रा करते हैं, जो गंगा नदी से पवित्र जल इकट्ठा करने और विभिन्न मंदिरों में शिवलिंगों पर चढ़ाने के लिए एक तीर्थयात्रा है।" },
+                { strong: "प्रकृति का नवीनीकरण:", text: "सावन मानसून के मौसम के साथ मेल खाता है, जो lush हरियाली और नवीनीकरण की भावना लाता है, जो समृद्धि और विकास का प्रतीक है, जो भगवान शिव से भी जुड़े हुए हैं।" },
+              ]
+            },
+            dailyFactModal: {
+              title: "दैनिक सावन तथ्य",
+              gotIt: "समझ गया! जय भोलेनाथ!",
+            },
+            dailyMantra: {
+              title: "दैनिक दिव्य मंत्र/श्लोक",
+              playAudio: "ऑडियो चलाएं (प्लेसहोल्डर)",
+              meaning: "अर्थ:",
+              transliteration: "लिप्यंतरण:",
+              mantras: [
+                {
+                  sanskrit: "ॐ नमः शिवाय",
+                  transliteration: "Om Namah Shivaya",
+                  meaning: "मैं भगवान शिव को नमन करता हूं। यह सबसे लोकप्रिय और शक्तिशाली मंत्र है, जो भक्ति और दिव्य के प्रति समर्पण का प्रतिनिधित्व करता है।"
+                },
+                {
+                  sanskrit: "महामृत्युंजयमंत्र",
+                  transliteration: "Maha Mrityunjaya Mantra",
+                  meaning: "हम त्रिनेत्रधारी भगवान शिव की पूजा करते हैं, जो सुगंधित हैं और सभी प्राणियों का पोषण करते हैं। वे हमें मृत्यु से अमरता के लिए मुक्त करें, जैसे एक ककड़ी अपनी बेल के बंधन से अलग हो जाती है। यह मंत्र लंबी उम्र, स्वास्थ्य और मुक्ति के लिए है।"
+                },
+                {
+                  sanskrit: "करचरणकृतं वाक्कायजं कर्मजं वा श्रवणनयनजं वा मानसं वापराधम्। विहितमविहितं वा सर्वमेतत्क्षमस्व जय जय करुणाब्धे श्री महादेव शम्भो॥",
+                  transliteration: "Karacharana Kritam Vaa Kaayajam Karmajam Vaa Shravana Nayanam Vaa Maanasam Vaa Paradham. Vihitam Avihitam Vaa Sarvam Etat Kshamasva Jaya Jaya Karunabdhe Shri Mahadeva Shambho॥",
+                  meaning: "हे भगवान शिव, मेरे हाथों, पैरों, वाणी, शरीर, कर्मों, कानों, आँखों या मन से किए गए सभी पापों को क्षमा करें, चाहे वे निर्धारित हों या नहीं। आपकी जय हो, हे महादेव, करुणा के सागर, शम्भो!"
+                },
+                {
+                  sanskrit: "नागेन्द्रहाराय त्रिलोचनाय भस्माङ्गरागाय महेश्वराय। नित्याय शुद्धाय दिगम्बराय तस्मै 'न' काराय नमः शिवाय॥",
+                  transliteration: "Nagendra Haraya Trilochanaya Bhasmangaragaya Maheshwaraya. Nityaya Shuddhaya Digambaraya Tasmai 'Na' Karaya Namah Shivaya॥",
+                  meaning: "मैं शिव को नमन करता हूं, जो नागों के राजा को माला के रूप में धारण करते हैं, जिनकी तीन आंखें हैं, जिनके शरीर पर पवित्र भस्म लगी है, जो महान भगवान हैं, जो शाश्वत, शुद्ध हैं, और जो दिशाओं से ढके हुए हैं (नग्न)। मैं ओम नमः शिवाय में उस 'न' ध्वनि को नमन करता हूं।"
+                },
+              ]
+            },
+            vratTracker: {
+              title: "सावन सोमवार व्रत ट्रैकर",
+              description: "सावन के दौरान आपने जिन सोमवारों को व्रत रखा है, उन्हें चिह्नित करें। आपकी प्रगति सत्रों में सहेजी नहीं जाएगी।",
+              monday: "सोमवार",
+              observed: "रखा",
+              notObserved: "नहीं रखा",
+              fastsObserved: "रखे गए व्रत:",
+              totalFasts: "कुल व्रत:",
+            },
+            shivChalisa: {
+              title: "शिव चालीसा",
+              fontSize: "फ़ॉन्ट आकार:",
+              increaseFont: "फ़ॉन्ट बढ़ाएँ",
+              decreaseFont: "फ़ॉन्ट घटाएँ",
+              text: `॥ दोहा ॥
+श्री गणेश गिरिजा सुवन, मंगल मूल सुजान।
+कहत अयोध्यादास तुम, देहु अभय वरदान॥
 
-    const videosDiv = document.getElementById("videos");
-    shorts.forEach(src => {
-      const container = document.createElement("div");
-      container.className = "video-container";
+॥ चौपाई ॥
+जय गिरिजा पति दीन दयाला। सदा करत संतन प्रतिपाला॥
+भाल चंद्रमा सोहत नीके। कानन कुंडल नागफनी के॥
+अंग गौर शिर गंग बहाये। मुंडमाल तन क्षार लगाये॥
+वस्त्र खाल बाघंबर सोहे। छवि को देखि नाग मन मोहे॥
+मैना मातु की ह्वै दुलारी। बाम अंग सोहत शिव प्यारी॥
+कर त्रिशूल सोहत छवि भारी। करत सदा शत्रुन क्षयकारी॥
+नंदी गणेश सोहैं तहं कैसे। सागर मध्य कमल हों जैसे॥
+कार्तिक श्याम और गणराऊ। या छवि को कहि जात न काऊ॥
+देवन जब ही जाय पुकारा। तब ही दुख प्रभु आप निवारा॥
+किया उपद्रव तारक भारी। देवन सब मिलि तुमहिं जुहारी॥
+तुरत षडानन आप पठायो। लवनिमेष महं मारि गिरायो॥
+आप जलंधर असुर संहारा। सुयश तुम्हार विदित संसारा॥
+त्रिपुरासुर सन युद्ध मचाई। सबहिं कृपा कर लीन बचाई॥
+किया तपस्या भागीरथ भारी। पूरब प्रतिज्ञा तासु पुरारी॥
+दानिन महं तुम सम कोउ नाहीं। सेवक स्तुति करत सदाहीं॥
+वेद नाम महिमा तव गाई। अकथ अनादि भेद नहिं पाई॥
+प्रगटी उदधि मंथन ते ज्वाला। जरे सुरासुर भये विहाला॥
+कीन्ह दया तहं करी सहाई। नीलकंठ तब नाम कहाई॥
+पूजन रामचंद्र जब कीन्हा। जीत के लंक विभीषण दीन्हा॥
+सहस कमल से पूजत पूजा। कीन्ह परीक्षा तब प्रभु दूजा॥
+एक कमल प्रभु राखेउ जोई। कमल नयन पूजन चहं सोई॥
+कठिन भक्ति देखी प्रभु शंकर। भये प्रसन्न दिए इच्छित वर॥
+जय जय जय अविनाशी। करत कृपा सब के घट वासी॥
+दुष्ट सकल नित मोहि सतावें। भ्रमित रहत मोहि चैन न आवे॥
+त्राहि त्राहि मैं नाथ पुकारो। यहि अवसर मोहि आन उबारो॥
+मात-पिता भ्राता सब कोई। संकट में पूछत नहिं कोई॥
+स्वामी एक है आस तुम्हारी। आय हरहु अब संकट भारी॥
+धन निर्धन को देत सदा हीं। जो कोई जांचे सो फल पाहीं॥
+अस्तुति केहि विधि करौं तुम्हारी। क्षमहु नाथ अब चूक हमारी॥
+शंकर हो संकट के नाशन। मंगल कारण विघ्न विनाशन॥
+योगी यति मुनि ध्यान लगावें। नारद शारद शीश नवावें॥
+नमो नमो जय नमो शिवाय। सुर ब्रह्मादिक पार न पाय॥
+जो यह पाठ करे मन लाई। ता पर होत है शंभु सहाई॥
+ऋणिया जो कोई हो अधिकारी। पाठ करे सो पावन हारी॥
+पुत्र हीन कर इच्छा कोई। निश्चय शिव प्रसाद ते होई॥
+पंडित त्रयोदशी को लावे। ध्यान पूर्वक होम करावे॥
+त्रयोदशी व्रत करे हमेशा। ताके तन नहीं रहे कलेशा॥
+धूप दीप नैवेद्य चढ़ावे। शंकर सम्मुख पाठ सुनावे॥
+जन्म जन्म के पाप नसावे। अंत धाम शिवपुर में पावे॥
+कahat Ayodhyadas as Tumhari. Jaani Sakal Dukh Harahu Hamari॥
 
-      const v = document.createElement("video");
-      v.src = src;
-      v.controls = true;
-      container.appendChild(v);
+॥ दोहा ॥
+Nitya Niyam Kar Pratah Hi, Path Karo Chalisa.
+Tum Meri Manokamna, Purn Karo Jagdish॥`
+            },
+            shareApp: "ऐप साझा करें",
+            loading: "दिव्य आशीर्वाद लोड हो रहा है...",
+          }
+        };
 
-      const btnGrp = document.createElement("div");
-      btnGrp.innerHTML = `
-        <button onclick="downloadVideo('${src}')">📥 Download</button>
-        <button onclick="shareVideo('${src}')">📤 Share</button>
-      `;
-      container.appendChild(btnGrp);
-      videosDiv.appendChild(container);
-    });
+        // Main App Component
+        const App = () => {
+          const [currentPage, setCurrentPage] = useState('home');
+          const [dailyFact, setDailyFact] = useState('');
+          const [isFactModalOpen, setIsFactModalOpen] = useState(false);
+          const [darkMode, setDarkMode] = useState(false);
+          const [loading, setLoading] = useState(false); // No Firebase loading
+          const [showNavbar, setShowNavbar] = useState(true);
+          const [language, setLanguage] = useState('en');
+          const [showResetConfirmModal, setShowResetConfirmModal] = useState(false);
 
-    function downloadVideo(url) {
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = "shiv_short_video.mp4";
-      a.click();
-    }
+          // Daily Sawan facts
+          const sawanFacts = [
+            "Sawan (Shravan) is the fifth month in the Hindu calendar, dedicated to Lord Shiva.",
+            "During Sawan, devotees observe fasts (Somvar Vrat) to please Lord Shiva.",
+            "The 'Kanwar Yatra' is a significant pilgrimage undertaken by Shiva devotees by Shiva devotees during Sawan.",
+            "Offering Bel Patra (Bilva leaves) to Lord Shiva is considered highly auspicious in Sawan.",
+            "Maha Mrityunjaya Mantra is chanted for longevity and well-being during Sawan.",
+            "Rudraksha beads are believed to be Lord Shiva's tears and are worn during Sawan for spiritual benefits.",
+            "The Samudra Manthan (churning of the ocean) incident is associated with Lord Shiva consuming poison during Sawan.",
+            "Shivlinga is worshipped in various forms during Sawan, including Parthiv Shivlinga made of clay.",
+            "The month of Sawan is also known as Shravan, named after the Shravan Nakshatra.",
+            "Many devotees visit Jyotirlingas, the twelve sacred shrines of Lord Shiva, during Sawan.",
+            "Performing Abhishek with water, milk, curd, ghee, honey, and sugar is a key ritual in Sawan.",
+            "The color green is considered auspicious in Sawan, symbolizing prosperity and growth."
+          ];
 
-    function shareVideo(url) {
-      if (navigator.share) {
-        navigator.share({
-          title: "Shiv Bhakti Short",
-          text: "हर हर महादेव! एक सुंदर शिव भक्ति वीडियो देखें।",
-          url: url
-        });
-      } else {
-        alert("Sharing not supported on this device.");
-      }
-    }
+          // Set daily fact on component mount, only once per session
+          useEffect(() => {
+            if (sessionStorage.getItem('sawanFactShown') !== 'true') {
+              const randomFact = sawanFacts[Math.floor(Math.random() * sawanFacts.length)];
+              setDailyFact(randomFact);
+              const timer = setTimeout(() => {
+                setIsFactModalOpen(true);
+                sessionStorage.setItem('sawanFactShown', 'true'); // Mark as shown for this session
+              }, 1500);
+              return () => clearTimeout(timer);
+            }
+          }, [sawanFacts]);
 
-    const imagesDiv = document.getElementById("images");
-    images.forEach(src => {
-      const container = document.createElement("div");
-      container.className = "image-container";
+          // Function to open the daily fact modal
+          const openFactModal = () => {
+            setIsFactModalOpen(true);
+          };
 
-      const img = document.createElement("img");
-      img.src = src;
-      container.appendChild(img);
+          // Function to close the daily fact modal
+          const closeFactModal = () => {
+            setIsFactModalOpen(false);
+          };
 
-      const btn = document.createElement("button");
-      btn.innerText = "📥 Save";
-      btn.onclick = () => {
-        const a = document.createElement("a");
-        a.href = src;
-        a.download = "shiv_belpatra_thought.jpg";
-        a.click();
-      };
-      container.appendChild(btn);
+          // Toggle Dark Mode
+          const toggleDarkMode = () => {
+            setDarkMode(prevMode => !prevMode);
+          };
 
-      imagesDiv.appendChild(container);
-    });
+          // Handle page change and hide navbar
+          const handlePageChange = (page) => {
+            setCurrentPage(page);
+            setShowNavbar(false); // Hide navbar when a page is selected
+          };
 
-    let currentUser = null;
-    function loginUser() {
-      const user = document.getElementById("username").value.trim();
-      if (user) {
-        currentUser = user;
-        document.getElementById("loggedUser").textContent = currentUser;
-        document.getElementById("loginSection").style.display = "none";
-        document.getElementById("uploadSection").style.display = "block";
-      } else {
-        alert("Kripya apna naam ya ID daalein.");
-      }
-    }
+          // Navbar Component
+          const Navbar = () => (
+            <nav className={`p-4 shadow-xl rounded-b-3xl sticky top-0 z-50 transition-colors duration-300 ${darkMode ? 'bg-gray-900' : 'bg-gradient-to-r from-indigo-700 to-purple-800'}`}>
+              <div className="container mx-auto flex flex-wrap justify-center items-center gap-3 sm:gap-4">
+                <NavItem page="home" label={translations[language].navbar.home} Icon={HomeIcon} />
+                <NavItem page="pooja" label={translations[language].navbar.poojaGuide} Icon={BookOpen} />
+                <NavItem page="mantras" label={translations[language].navbar.mantras} Icon={ScrollText} />
+                <NavItem page="aarti" label={translations[language].navbar.aarti} Icon={Sparkles} />
+                <NavItem page="virtual" label={translations[language].navbar.virtualPooja} Icon={HeartHandshake} />
+                <NavItem page="calendar" label={translations[language].navbar.sawanCalendar} Icon={CalendarDays} />
+                <NavItem page="checklist" label={translations[language].navbar.poojaChecklist} Icon={ListChecks} />
+                <NavItem page="vratTracker" label={translations[language].navbar.vratTracker} Icon={ListChecks} />
+                <NavItem page="shivChalisa" label={translations[language].navbar.shivChalisa} Icon={ScrollText} />
+                <NavItem page="about" label={translations[language].navbar.aboutSawan} Icon={Info} />
+                <button
+                  onClick={openFactModal}
+                  className={`font-semibold py-2 px-3 sm:px-4 rounded-full shadow-md transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-opacity-75 flex items-center text-sm sm:text-base
+                    ${darkMode ? 'bg-gray-700 hover:bg-gray-600 text-white focus:ring-gray-500' : 'bg-purple-600 hover:bg-purple-500 text-white focus:ring-purple-400'}`}
+                >
+                  <Sparkles size={18} className="mr-1" /> {translations[language].navbar.dailyFact}
+                </button>
+                <button
+                  onClick={toggleDarkMode}
+                  className={`font-semibold py-2 px-3 sm:px-4 rounded-full shadow-md transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-opacity-75 flex items-center text-sm sm:text-base
+                    ${darkMode ? 'bg-gray-700 hover:bg-gray-600 text-white focus:ring-gray-500' : 'bg-indigo-600 hover:bg-indigo-500 text-white focus:ring-indigo-400'}`}
+                >
+                  {darkMode ? <Sun size={18} /> : <Moon size={18} />}
+                </button>
+                {/* Language Selection Buttons */}
+                <button
+                  onClick={() => setLanguage('en')}
+                  className={`font-semibold py-2 px-3 sm:px-4 rounded-full shadow-md transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-opacity-75 text-sm sm:text-base
+                    ${language === 'en' ? (darkMode ? 'bg-gray-700 text-white shadow-inner' : 'bg-blue-500 text-white shadow-inner') : (darkMode ? 'text-gray-300 hover:bg-gray-800' : 'text-blue-100 hover:bg-blue-700')}`}
+                >
+                  {translations[language].navbar.english}
+                </button>
+                <button
+                  onClick={() => setLanguage('hi')}
+                  className={`font-semibold py-2 px-3 sm:px-4 rounded-full shadow-md transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-opacity-75 text-sm sm:text-base
+                    ${language === 'hi' ? (darkMode ? 'bg-gray-700 text-white shadow-inner' : 'bg-blue-500 text-white shadow-inner') : (darkMode ? 'text-gray-300 hover:bg-gray-800' : 'text-blue-100 hover:bg-blue-700')}`}
+                >
+                  {translations[language].navbar.hindi}
+                </button>
+              </div>
+            </nav>
+          );
 
-    const uploadInput = document.getElementById("uploadInput");
-    const userVideoContainer = document.getElementById("userVideoContainer");
+          // NavItem Component for individual navigation links
+          const NavItem = ({ page, label, Icon }) => (
+            <button
+              onClick={() => handlePageChange(page)}
+              className={`px-3 sm:px-4 py-2 rounded-full font-medium transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-opacity-75 flex items-center text-sm sm:text-base
+                ${currentPage === page && !showNavbar ? (darkMode ? 'bg-gray-700 text-white shadow-inner' : 'bg-purple-500 text-white shadow-inner') : (darkMode ? 'text-gray-300 hover:bg-gray-800' : 'text-purple-100 hover:bg-purple-700')}`}
+            >
+              {Icon && <Icon size={18} className="mr-1" />} {label}
+            </button>
+          );
 
-    uploadInput.addEventListener("change", (event) => {
-      const file = event.target.files[0];
-      if (file && file.type.startsWith("video/")) {
-        const videoURL = URL.createObjectURL(file);
-        const video = document.createElement("video");
-        video.src = videoURL;
-        video.controls = true;
-        video.style.width = "90%";
-        video.style.maxWidth = "400px";
-        video.style.marginTop = "10px";
+          // Loading Spinner Component (simplified as no async loading)
+          const LoadingSpinner = () => (
+            <div className="flex justify-center items-center h-screen">
+              <div className="animate-spin rounded-full h-32 w-32 border-t-4 border-b-4 border-indigo-500"></div>
+              <p className={`ml-4 text-xl ${darkMode ? 'text-indigo-300' : 'text-indigo-700'}`}>{translations[language].loading}</p>
+            </div>
+          );
 
-        const label = document.createElement("p");
-        label.textContent = `👤 Uploaded by: ${currentUser}`;
-        label.style.marginTop = "5px";
-        label.style.color = "#00ffc3";
+          // Since there's no Firebase loading, we can remove the loading check here
+          // if (loading || !isAuthReady) {
+          //   return <LoadingSpinner />;
+          // }
 
-        userVideoContainer.innerHTML = "<h3>📽️ Aapka Upload Kiya Gaya Video:</h3>";
-        userVideoContainer.appendChild(video);
-        userVideoContainer.appendChild(label);
-      } else {
-        alert("Kripya sirf MP4 video upload karein.");
-      }
-    });
-  </script>
+          // Home Page Component
+          const Home = () => (
+            <div className={`text-center p-6 rounded-3xl shadow-2xl m-4 max-w-5xl mx-auto animate-fade-in-up ${darkMode ? 'bg-gray-800 text-gray-100' : 'bg-white text-gray-800'}`}>
+              <h2 className={`text-5xl font-extrabold mb-6 animate-pulse-text ${darkMode ? 'text-indigo-400' : 'text-indigo-800'}`}>
+                {translations[language].home.welcome}
+              </h2>
+              <p className={`text-xl mb-8 leading-relaxed ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                {translations[language].home.tagline}
+              </p>
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-10">
+                <FeatureCard
+                  title={translations[language].home.featureCards.poojaGuide.title}
+                  description={translations[language].home.featureCards.poojaGuide.description}
+                  Icon={BookOpen}
+                  onClick={() => handlePageChange('pooja')}
+                  darkMode={darkMode}
+                />
+                <FeatureCard
+                  title={translations[language].home.featureCards.sacredMantras.title}
+                  description={translations[language].home.featureCards.sacredMantras.description}
+                  Icon={ScrollText}
+                  onClick={() => handlePageChange('mantras')}
+                  darkMode={darkMode}
+                />
+                <FeatureCard
+                  title={translations[language].home.featureCards.virtualOffering.title}
+                  description={translations[language].home.featureCards.virtualOffering.description}
+                  Icon={HeartHandshake}
+                  onClick={() => handlePageChange('virtual')}
+                  darkMode={darkMode}
+                />
+                <FeatureCard
+                  title={translations[language].home.featureCards.sawanCalendar.title}
+                  description={translations[language].home.featureCards.sawanCalendar.description}
+                  Icon={CalendarDays}
+                  onClick={() => handlePageChange('calendar')}
+                  darkMode={darkMode}
+                />
+                <FeatureCard
+                  title={translations[language].home.featureCards.poojaChecklist.title}
+                  description={translations[language].home.featureCards.poojaChecklist.description}
+                  Icon={ListChecks}
+                  onClick={() => handlePageChange('checklist')}
+                  darkMode={darkMode}
+                />
+                <FeatureCard
+                  title={translations[language].home.featureCards.dailyMantra.title}
+                  description={translations[language].home.featureCards.dailyMantra.description}
+                  Icon={Sparkles}
+                  onClick={() => handlePageChange('dailyMantra')}
+                  darkMode={darkMode}
+                />
+                <FeatureCard
+                  title={translations[language].home.featureCards.vratTracker.title}
+                  description={translations[language].home.featureCards.vratTracker.description}
+                  Icon={ListChecks}
+                  onClick={() => handlePageChange('vratTracker')}
+                  darkMode={darkMode}
+                />
+                <FeatureCard
+                  title={translations[language].home.featureCards.shivChalisa.title}
+                  description={translations[language].home.featureCards.shivChalisa.description}
+                  Icon={ScrollText}
+                  onClick={() => handlePageChange('shivChalisa')}
+                  darkMode={darkMode}
+                />
+                <FeatureCard
+                  title={translations[language].home.featureCards.aboutSawan.title}
+                  description={translations[language].home.featureCards.aboutSawan.description}
+                  Icon={Info}
+                  onClick={() => handlePageChange('about')}
+                  darkMode={darkMode}
+                />
+              </div>
+              <p className={`mt-8 text-sm ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                {translations[language].home.userIdMessage}
+              </p>
+            </div>
+          );
+
+          // FeatureCard Component for Home Page
+          const FeatureCard = ({ title, description, Icon, onClick, darkMode }) => (
+            <div
+              className={`p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 cursor-pointer border ${darkMode ? 'bg-gray-700 border-gray-600 text-gray-100 hover:shadow-gray-700' : 'bg-indigo-50 border-indigo-200 text-gray-800'}`}
+              onClick={onClick}
+            >
+              <div className="flex justify-center mb-4">
+                <Icon size={48} className={`animate-bounce-icon ${darkMode ? 'text-indigo-300' : 'text-indigo-600'}`} />
+              </div>
+              <h3 className={`text-2xl font-bold mb-2 ${darkMode ? 'text-indigo-300' : 'text-indigo-700'}`}>{title}</h3>
+              <p className={`${darkMode ? 'text-gray-300' : 'text-gray-600'} leading-relaxed`}>{description}</p>
+            </div>
+          );
+
+          // Pooja Guide Component
+          const PoojaGuide = () => (
+            <div className={`p-6 rounded-3xl shadow-2xl m-4 max-w-5xl mx-auto animate-fade-in-up ${darkMode ? 'bg-gray-800 text-gray-100' : 'bg-white text-gray-800'}`}>
+              <h2 className={`text-4xl font-extrabold mb-8 text-center ${darkMode ? 'text-indigo-400' : 'text-indigo-800'}`}>
+                {translations[language].poojaGuide.title}
+              </h2>
+              <div className="grid md:grid-cols-2 gap-8">
+                {translations[language].poojaGuide.steps.map((step, index) => (
+                  <PoojaStep
+                    key={index}
+                    step={step.step}
+                    description={step.description}
+                    Icon={index % 2 === 0 ? Sparkles : HeartHandshake} // Alternate icons
+                    darkMode={darkMode}
+                  />
+                ))}
+              </div>
+            </div>
+          );
+
+          // PoojaStep Component
+          const PoojaStep = ({ step, description, Icon, darkMode }) => (
+            <div className={`p-6 rounded-2xl shadow-lg border flex items-start space-x-4 ${darkMode ? 'bg-gray-700 border-gray-600 text-gray-100' : 'bg-indigo-50 border-indigo-200 text-gray-800'}`}>
+              <Icon size={30} className={`flex-shrink-0 mt-1 ${darkMode ? 'text-indigo-300' : 'text-indigo-600'}`} />
+              <div>
+                <h3 className={`text-2xl font-bold mb-2 ${darkMode ? 'text-indigo-300' : 'text-indigo-700'}`}>{step}</h3>
+                <p className={`${darkMode ? 'text-gray-300' : 'text-gray-700'} leading-relaxed`}>{description}</p>
+              </div>
+            </div>
+          );
+
+          // Mantras Component
+          const Mantras = () => (
+            <div className={`p-6 rounded-3xl shadow-2xl m-4 max-w-5xl mx-auto animate-fade-in-up ${darkMode ? 'bg-gray-800 text-gray-100' : 'bg-white text-gray-800'}`}>
+              <h2 className={`text-4xl font-extrabold mb-8 text-center ${darkMode ? 'text-indigo-400' : 'text-indigo-800'}`}>
+                {translations[language].mantras.title}
+              </h2>
+              <div className="space-y-8">
+                <MantraCard
+                  title={translations[language].mantras.omNamahShivaya.title}
+                  sanskrit={translations[language].mantras.omNamahShivaya.sanskrit}
+                  meaning={translations[language].mantras.omNamahShivaya.meaning}
+                  darkMode={darkMode}
+                  language={language}
+                />
+                <MantraCard
+                  title={translations[language].mantras.mahaMrityunjaya.title}
+                  sanskrit={translations[language].mantras.mahaMrityunjaya.sanskrit}
+                  meaning={translations[language].mantras.mahaMrityunjaya.meaning}
+                  darkMode={darkMode}
+                  language={language}
+                />
+                <MantraCard
+                  title={translations[language].mantras.rudraMantra.title}
+                  sanskrit={translations[language].mantras.rudraMantra.sanskrit}
+                  meaning={translations[language].mantras.rudraMantra.meaning}
+                  darkMode={darkMode}
+                  language={language}
+                />
+                <MantraCard
+                  title={translations[language].mantras.shivGayatri.title}
+                  sanskrit={translations[language].mantras.shivGayatri.sanskrit}
+                  meaning={translations[language].mantras.shivGayatri.meaning}
+                  darkMode={darkMode}
+                  language={language}
+                />
+              </div>
+            </div>
+          );
+
+          // MantraCard Component
+          const MantraCard = ({ title, sanskrit, meaning, darkMode, language }) => {
+            const [audioPlaying, setAudioPlaying] = useState(false);
+            const audioRef = useRef(null);
+
+            const handleCopy = () => {
+              const el = document.createElement('textarea');
+              el.value = sanskrit;
+              document.body.appendChild(el);
+              el.select();
+              document.execCommand('copy');
+              document.body.removeChild(el);
+              alert(language === 'en' ? 'Mantra copied to clipboard!' : 'मंत्र कॉपी किया गया!');
+            };
+
+            const toggleAudio = () => {
+              if (audioRef.current) {
+                if (audioPlaying) {
+                  audioRef.current.pause();
+                } else {
+                  alert(language === 'en' ? 'Audio functionality is a placeholder. Real audio not available in this version.' : 'ऑडियो कार्यक्षमता एक प्लेसहोल्डर है। इस संस्करण में वास्तविक ऑडियो उपलब्ध नहीं है।');
+                }
+                setAudioPlaying(!audioPlaying);
+              } else {
+                alert(language === 'en' ? 'Audio functionality is a placeholder. Real audio not available in this version.' : 'ऑडियो कार्यक्षमता एक प्लेसहोल्डर है। इस संस्करण में वास्तविक ऑडियो उपलब्ध नहीं है.');
+              }
+            };
+
+            return (
+              <div className={`p-6 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 border ${darkMode ? 'bg-gray-700 border-gray-600 text-gray-100' : 'bg-indigo-50 border-indigo-200 text-gray-800'}`}>
+                <h3 className={`text-3xl font-bold mb-3 ${darkMode ? 'text-indigo-300' : 'text-indigo-700'}`}>{title}</h3>
+                <p className={`text-2xl font-serif mb-4 p-3 rounded-lg border ${darkMode ? 'bg-gray-600 border-gray-500 text-gray-100' : 'bg-indigo-100 border-indigo-300 text-gray-900'}`}>{sanskrit}</p>
+                <p className={`${darkMode ? 'text-gray-300' : 'text-gray-700'} leading-relaxed mb-4`}>{meaning}</p>
+                <div className="flex flex-wrap gap-4">
+                  <button
+                    onClick={handleCopy}
+                    className={`font-semibold py-2 px-5 rounded-full shadow-md transition duration-300 ease-in-out transform hover:scale-105 flex items-center ${darkMode ? 'bg-indigo-500 hover:bg-indigo-600 text-white' : 'bg-indigo-600 hover:bg-indigo-700 text-white'}`}
+                  >
+                    <Sparkles size={20} className="mr-2" /> {translations[language].mantras.copyMantra}
+                  </button>
+                  <button
+                    onClick={toggleAudio}
+                    className={`font-semibold py-2 px-5 rounded-full shadow-md transition duration-300 ease-in-out transform hover:scale-105 flex items-center ${darkMode ? 'bg-purple-500 hover:bg-purple-600 text-white' : 'bg-purple-600 hover:bg-purple-700 text-white'}`}
+                  >
+                    {audioPlaying ? <VolumeX size={20} className="mr-2" /> : <Volume2 size={20} className="mr-2" />}
+                    {audioPlaying ? translations[language].mantras.pauseAudio : translations[language].mantras.playAudio}
+                  </button>
+                  <audio ref={audioRef} preload="auto" onEnded={() => setAudioPlaying(false)}></audio>
+                </div>
+              </div>
+            );
+          };
+
+          // Aarti Component
+          const Aarti = () => (
+            <div className={`p-6 rounded-3xl shadow-2xl m-4 max-w-5xl mx-auto animate-fade-in-up ${darkMode ? 'bg-gray-800 text-gray-100' : 'bg-white text-gray-800'}`}>
+              <h2 className={`text-4xl font-extrabold mb-8 text-center ${darkMode ? 'text-indigo-400' : 'text-indigo-800'}`}>
+                {translations[language].aarti.title}
+              </h2>
+              <div className={`p-8 rounded-2xl shadow-lg text-lg leading-loose font-serif border ${darkMode ? 'bg-gray-700 border-gray-600 text-gray-100' : 'bg-indigo-50 border-indigo-200 text-gray-800'}`}>
+                <p className={`mb-4 text-center font-bold text-xl ${darkMode ? 'text-indigo-300' : 'text-indigo-700'}`}>
+                  {language === 'en' ? 'Om Jai Shiv Omkara' : 'जय शिव ओंकारा'}
+                </p>
+                {translations[language].aarti.text.split('\n').map((line, index) => (
+                  <p key={index} className="mb-2">{line}</p>
+                ))}
+              </div>
+            </div>
+          );
+
+          // Virtual Pooja Component
+          const VirtualPooja = () => {
+            const [message, setMessage] = useState('');
+            const [offeringAnimation, setOfferingAnimation] = useState('');
+            const [offerings, setOfferings] = useState({
+              belPatra: 0,
+              milk: 0,
+              water: 0,
+              flowers: 0,
+            });
+
+            const defaultOfferings = { belPatra: 0, milk: 0, water: 0, flowers: 0 };
+
+            // Load offerings from localStorage on component mount
+            useEffect(() => {
+                const savedOfferings = localStorage.getItem('virtualPoojaOfferings');
+                if (savedOfferings) {
+                    setOfferings(JSON.parse(savedOfferings));
+                }
+            }, []);
+
+            // Save offerings to localStorage whenever they change
+            useEffect(() => {
+                localStorage.setItem('virtualPoojaOfferings', JSON.stringify(offerings));
+            }, [offerings]);
+
+            const handleOffer = (item) => {
+              setOfferings(prev => {
+                const newOfferings = { ...prev, [item]: prev[item] + 1 };
+                return newOfferings;
+              });
+
+              let msg = '';
+              let animationClass = '';
+              switch (item) {
+                case 'belPatra':
+                  msg = translations[language].virtualPooja.messages.belPatra;
+                  animationClass = 'animate-offer-belpatra-new';
+                  break;
+                case 'milk':
+                  msg = translations[language].virtualPooja.messages.milk;
+                  animationClass = 'animate-pour-milk';
+                  break;
+                case 'water':
+                  msg = translations[language].virtualPooja.messages.water;
+                  animationClass = 'animate-pour-water';
+                  break;
+                case 'flowers':
+                  msg = translations[language].virtualPooja.messages.flowers;
+                  animationClass = 'animate-offer-flower-new';
+                  break;
+                default:
+                  msg = translations[language].virtualPooja.messages.complete;
+              }
+              setMessage(msg);
+              setOfferingAnimation(animationClass);
+              setTimeout(() => {
+                setMessage('');
+                setOfferingAnimation('');
+              }, 2000); // Duration matches animation
+            };
+
+            const handleResetOfferings = () => {
+              setShowResetConfirmModal(true); // Open confirmation modal
+            };
+
+            const confirmReset = () => {
+              setOfferings(defaultOfferings);
+              setMessage(language === 'en' ? 'Offerings reset!' : 'अर्पण रीसेट किया गया!');
+              setShowResetConfirmModal(false);
+              setTimeout(() => setMessage(''), 2000);
+            };
+
+            const cancelReset = () => {
+              setShowResetConfirmModal(false);
+            };
+
+            const playSound = (soundType) => {
+              let soundMessage = '';
+              if (soundType === 'bell') {
+                soundMessage = translations[language].virtualPooja.bellRing;
+              } else if (soundType === 'conch') {
+                soundMessage = translations[language].virtualPooja.conchBlow;
+              }
+              setMessage(soundMessage);
+              setTimeout(() => setMessage(''), 1500);
+            };
+
+
+            return (
+              <div className={`p-6 rounded-3xl shadow-2xl m-4 max-w-5xl mx-auto text-center animate-fade-in-up ${darkMode ? 'bg-gray-800 text-gray-100' : 'bg-white text-gray-800'}`}>
+                <h2 className={`text-4xl font-extrabold mb-8 ${darkMode ? 'text-indigo-400' : 'text-indigo-800'}`}>
+                  {translations[language].virtualPooja.title}
+                </h2>
+                <p className={`text-lg mb-8 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                  {translations[language].virtualPooja.description}
+                </p>
+
+                <div className="relative w-72 h-72 mx-auto mb-10 flex items-center justify-center overflow-hidden rounded-full">
+                  {/* Subtle glowing effect */}
+                  <div className={`absolute inset-0 rounded-full blur-xl opacity-50 animate-pulse-glow ${darkMode ? 'bg-indigo-500' : 'bg-yellow-300'}`}></div>
+
+                  {/* Shivlinga SVG */}
+                  <svg
+                    className={`relative z-10 w-full h-full animate-pulse-shivlinga ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}
+                    viewBox="0 0 100 100"
+                    fill="currentColor"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    {/* Base - more pronounced shadow/gradient effect */}
+                    <defs>
+                      <radialGradient id="baseGradient" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+                        <stop offset="0%" stopColor={darkMode ? "#4b5563" : "#d1d5db"} />
+                        <stop offset="100%" stopColor={darkMode ? "#1f2937" : "#9ca3af"} />
+                      </radialGradient>
+                      <radialGradient id="lingamGradient" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+                        <stop offset="0%" stopColor={darkMode ? "#6b7280" : "#4b5563"} />
+                        <stop offset="100%" stopColor={darkMode ? "#374151" : "#1f2937"} />
+                      </radialGradient>
+                    </defs>
+                    <path d="M50 95 C25 95 20 80 20 60 C20 40 25 25 50 25 C75 25 80 40 80 60 C80 80 75 95 50 95 Z" fill="url(#baseGradient)" stroke={darkMode ? '#374151' : '#6b7280'} strokeWidth="1" />
+                    <path d="M50 25 C40 25 35 40 35 60 C35 80 40 90 50 90 C60 90 65 80 65 60 C65 40 60 25 50 25 Z" fill="url(#lingamGradient)" stroke={darkMode ? '#4b5563' : '#374151'} strokeWidth="1" />
+                    {/* Tripundra (three lines) */}
+                    <path d="M40 35 Q50 30 60 35" className="stroke-white stroke-2" fill="none" />
+                    <path d="M42 38 Q50 33 58 38" className="stroke-white stroke-2" fill="none" />
+                    <path d="M44 41 Q50 36 56 41" className="stroke-white stroke-2" fill="none" />
+                    {/* Eye (third eye) */}
+                    <circle cx="50" cy="36" r="2" className="fill-red-500" />
+
+                    {/* Offering animations - dynamically added as separate elements */}
+                    {offeringAnimation === 'animate-offer-belpatra-new' && (
+                      <>
+                        <path d="M50 0 L45 10 L55 10 Z" className="fill-green-600 opacity-0 animate-offer-belpatra-svg" />
+                        <path d="M40 0 L35 10 L45 10 Z" className="fill-green-600 opacity-0 animate-offer-belpatra-svg" style={{ animationDelay: '0.1s' }} />
+                        <path d="M60 0 L55 10 L65 10 Z" className="fill-green-600 opacity-0 animate-offer-belpatra-svg" style={{ animationDelay: '0.2s' }} />
+                      </>
+                    )}
+                    {offeringAnimation === 'animate-offer-flower-new' && (
+                      <>
+                        <circle cx="50" cy="0" r="3" className="fill-red-400 opacity-0 animate-offer-flower-svg" />
+                        <circle cx="40" cy="0" r="3" className="fill-yellow-400 opacity-0 animate-offer-flower-svg" style={{ animationDelay: '0.1s' }} />
+                        <circle cx="60" cy="0" r="3" className="fill-pink-400 opacity-0 animate-offer-flower-svg" style={{ animationDelay: '0.2s' }} />
+                      </>
+                    )}
+                    {offeringAnimation === 'animate-pour-milk' && (
+                      <rect x="48" y="0" width="4" height="0" className="fill-white opacity-0 animate-pour-milk" />
+                    )}
+                    {offeringAnimation === 'animate-pour-water' && (
+                      <rect x="48" y="0" width="4" height="0" className="fill-blue-400 opacity-0 animate-pour-water" />
+                    )}
+                  </svg>
+
+                  {message && (
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-gradient-to-r from-green-500 to-emerald-600 text-white px-5 py-3 rounded-full shadow-lg animate-fade-in-out text-lg font-semibold">
+                      {message}
+                    </div>
+                  )}
+                </div>
+
+                <div className="flex flex-wrap justify-center gap-4 mb-8">
+                  <OfferButton item="belPatra" label={translations[language].virtualPooja.offerBelPatra} onClick={handleOffer} icon="🌿" darkMode={darkMode} />
+                  <OfferButton item="milk" label={translations[language].virtualPooja.offerMilk} onClick={handleOffer} icon="🥛" darkMode={darkMode} />
+                  <OfferButton item="water" label={translations[language].virtualPooja.offerWater} onClick={handleOffer} icon="💧" darkMode={darkMode} />
+                  <OfferButton item="flowers" label={translations[language].virtualPooja.offerFlowers} onClick={handleOffer} icon="🌸" darkMode={darkMode} />
+                </div>
+
+                <div className="flex flex-wrap justify-center gap-4 mb-8">
+                  <button
+                    onClick={() => playSound('bell')}
+                    className={`font-bold py-3 px-6 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105 active:scale-95 flex items-center justify-center text-lg space-x-2 ${darkMode ? 'bg-yellow-600 hover:bg-yellow-500 text-white' : 'bg-yellow-500 hover:bg-yellow-600 text-white'}`}
+                  >
+                    <Bell size={20} className="mr-2" /> {language === 'en' ? 'Ring Bell' : 'घंटी बजाएं'}
+                  </button>
+                  <button
+                    onClick={() => playSound('conch')}
+                    className={`font-bold py-3 px-6 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105 active:scale-95 flex items-center justify-center text-lg space-x-2 ${darkMode ? 'bg-orange-600 hover:bg-orange-500 text-white' : 'bg-orange-500 hover:bg-orange-600 text-white'}`}
+                  >
+                    <Wind size={20} className="mr-2" /> {language === 'en' ? 'Blow Conch' : 'शंख बजाएं'}
+                  </button>
+                </div>
+
+
+                <div className={`grid grid-cols-2 sm:grid-cols-4 gap-4 text-xl font-semibold mb-6 ${darkMode ? 'text-indigo-300' : 'text-indigo-700'}`}>
+                  <p>{translations[language].virtualPooja.belPatraCount} <span className="font-bold">{offerings.belPatra}</span></p>
+                  <p>{translations[language].virtualPooja.milkCount} <span className="font-bold">{offerings.milk}</span></p>
+                  <p>{translations[language].virtualPooja.waterCount} <span className="font-bold">{offerings.water}</span></p>
+                  <p>{translations[language].virtualPooja.flowersCount} <span className="font-bold">{offerings.flowers}</span></p>
+                </div>
+
+                <button
+                  onClick={handleResetOfferings}
+                  className={`font-semibold py-3 px-6 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105 flex items-center justify-center mx-auto ${darkMode ? 'bg-red-700 hover:bg-red-600 text-white' : 'bg-red-600 hover:bg-red-700 text-white'}`}
+                >
+                  <RotateCcw size={20} className="mr-2" /> {translations[language].virtualPooja.resetOfferings}
+                </button>
+
+                {showResetConfirmModal && (
+                  <ConfirmationModal
+                    message={translations[language].virtualPooja.resetConfirmation}
+                    onConfirm={confirmReset}
+                    onCancel={cancelReset}
+                    darkMode={darkMode}
+                    language={language}
+                  />
+                )}
+              </div>
+            );
+          };
+
+          // OfferButton Component for Virtual Pooja
+          const OfferButton = ({ item, label, onClick, icon, darkMode }) => (
+            <button
+              onClick={() => onClick(item)}
+              className={`font-bold py-3 px-6 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105 active:scale-95 flex items-center justify-center text-lg space-x-2
+                ${darkMode ? 'bg-indigo-500 hover:bg-indigo-600 text-white' : 'bg-indigo-600 hover:bg-indigo-700 text-white'}`}
+            >
+              <span className="text-2xl">{icon}</span>
+              <span>{label}</span>
+            </button>
+          );
+
+          // Confirmation Modal Component
+          const ConfirmationModal = ({ message, onConfirm, onCancel, darkMode, language }) => (
+            <div className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-[110] p-4 animate-fade-in">
+              <div className={`rounded-3xl shadow-2xl p-8 max-w-sm w-full relative transform transition-all duration-500 scale-100 opacity-100 border-4 ${darkMode ? 'bg-gray-700 border-indigo-600 text-gray-100' : 'bg-white border-indigo-400 text-gray-800'}`}>
+                <p className={`text-xl text-center mb-8 leading-relaxed ${darkMode ? 'text-gray-300' : 'text-gray-800'}`}>
+                  {message}
+                </p>
+                <div className="flex justify-center gap-4">
+                  <button
+                    onClick={onConfirm}
+                    className={`font-bold py-2 px-5 rounded-full shadow-md transition duration-300 ease-in-out transform hover:scale-105 ${darkMode ? 'bg-green-600 hover:bg-green-700 text-white' : 'bg-green-500 hover:bg-green-600 text-white'}`}
+                  >
+                    {translations[language].virtualPooja.yes}
+                  </button>
+                  <button
+                    onClick={onCancel}
+                    className={`font-bold py-2 px-5 rounded-full shadow-md transition duration-300 ease-in-out transform hover:scale-105 ${darkMode ? 'bg-red-600 hover:bg-red-700 text-white' : 'bg-red-500 hover:bg-red-600 text-white'}`}
+                  >
+                    {translations[language].virtualPooja.no}
+                  </button>
+                </div>
+              </div>
+            </div>
+          );
+
+          // Daily Mantra Component
+          const DailyMantra = () => {
+            const [currentMantra, setCurrentMantra] = useState({});
+            const audioRef = useRef(null);
+            const [audioPlaying, setAudioPlaying] = useState(false);
+
+            useEffect(() => {
+              const today = new Date();
+              const dayOfYear = Math.floor((today - new Date(today.getFullYear(), 0, 0)) / 1000 / 60 / 60 / 24);
+              const mantraIndex = dayOfYear % translations.en.dailyMantra.mantras.length;
+
+              setCurrentMantra(translations[language].dailyMantra.mantras[mantraIndex]);
+            }, [language]);
+
+            const toggleAudio = () => {
+              if (audioRef.current) {
+                if (audioPlaying) {
+                  audioRef.current.pause();
+                } else {
+                  alert(language === 'en' ? 'Audio functionality is a placeholder. Real audio not available in this version.' : 'ऑडियो कार्यक्षमता एक प्लेसहोल्डर है। इस संस्करण में वास्तविक ऑडियो उपलब्ध नहीं है.');
+                }
+                setAudioPlaying(!audioPlaying);
+              } else {
+                alert(language === 'en' ? 'Audio functionality is a placeholder. Real audio not available in this version.' : 'ऑडियो कार्यक्षमता एक प्लेसहोल्डर है। इस संस्करण में वास्तविक ऑडियो उपलब्ध नहीं है.');
+              }
+            };
+
+            return (
+              <div className={`p-6 rounded-3xl shadow-2xl m-4 max-w-5xl mx-auto animate-fade-in-up ${darkMode ? 'bg-gray-800 text-gray-100' : 'bg-white text-gray-800'}`}>
+                <h2 className={`text-4xl font-extrabold mb-8 text-center ${darkMode ? 'text-indigo-400' : 'text-indigo-800'}`}>
+                  {translations[language].dailyMantra.title}
+                </h2>
+                {currentMantra && (
+                  <div className={`p-8 rounded-2xl shadow-lg border ${darkMode ? 'bg-gray-700 border-gray-600 text-gray-100' : 'bg-indigo-50 border-indigo-200 text-gray-800'}`}>
+                    <p className={`text-3xl font-serif mb-4 p-3 rounded-lg border ${darkMode ? 'bg-gray-600 border-gray-500 text-gray-100' : 'bg-indigo-100 border-indigo-300 text-gray-900'}`}>
+                      {currentMantra.sanskrit}
+                    </p>
+                    <p className={`text-xl mb-2 ${darkMode ? 'text-indigo-300' : 'text-indigo-700'}`}>
+                      {translations[language].dailyMantra.transliteration} <span className={`${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>{currentMantra.transliteration}</span>
+                    </p>
+                    <p className={`text-xl mb-4 ${darkMode ? 'text-indigo-300' : 'text-indigo-700'}`}>
+                      {translations[language].dailyMantra.meaning} <span className={`${darkMode ? 'text-gray-300' : 'text-gray-700'} leading-relaxed`}>{currentMantra.meaning}</span>
+                    </p>
+                    <button
+                      onClick={toggleAudio}
+                      className={`font-semibold py-2 px-5 rounded-full shadow-md transition duration-300 ease-in-out transform hover:scale-105 flex items-center mx-auto ${darkMode ? 'bg-purple-500 hover:bg-purple-600 text-white' : 'bg-purple-600 hover:bg-purple-700 text-white'}`}
+                    >
+                      {audioPlaying ? <VolumeX size={20} className="mr-2" /> : <Volume2 size={20} className="mr-2" />}
+                      {audioPlaying ? translations[language].mantras.pauseAudio : translations[language].dailyMantra.playAudio}
+                    </button>
+                    <audio ref={audioRef} preload="auto" onEnded={() => setAudioPlaying(false)}></audio>
+                  </div>
+                )}
+              </div>
+            );
+          };
+
+          // Sawan Vrat Tracker Component
+          const VratTracker = () => {
+            const sawanMondays = translations.en.sawanCalendar.dates.filter(d => d.day === 'Monday');
+            const [vratStatus, setVratStatus] = useState(() => {
+                const savedStatus = localStorage.getItem('sawanVratStatus');
+                return savedStatus ? JSON.parse(savedStatus) : sawanMondays.map(monday => ({ date: monday.date, observed: false }));
+            });
+
+            useEffect(() => {
+                localStorage.setItem('sawanVratStatus', JSON.stringify(vratStatus));
+            }, [vratStatus]);
+
+            const handleToggleVrat = (dateToToggle) => {
+              setVratStatus(prevStatus => {
+                const newStatus = prevStatus.map(vrat =>
+                  vrat.date === dateToToggle ? { ...vrat, observed: !vrat.observed } : vrat
+                );
+                return newStatus;
+              });
+            };
+
+            const observedCount = vratStatus.filter(vrat => vrat.observed).length;
+            const totalCount = sawanMondays.length;
+
+            return (
+              <div className={`p-6 rounded-3xl shadow-2xl m-4 max-w-5xl mx-auto animate-fade-in-up ${darkMode ? 'bg-gray-800 text-gray-100' : 'bg-white text-gray-800'}`}>
+                <h2 className={`text-4xl font-extrabold mb-8 text-center ${darkMode ? 'text-indigo-400' : 'text-indigo-800'}`}>
+                  {translations[language].vratTracker.title}
+                </h2>
+                <p className={`text-lg mb-6 text-center ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                  {translations[language].vratTracker.description}
+                </p>
+
+                <div className="mb-8 p-4 rounded-xl shadow-inner flex justify-around items-center text-xl font-bold
+                  ${darkMode ? 'bg-gray-700 text-indigo-300' : 'bg-indigo-100 text-indigo-700'}">
+                  <span>{translations[language].vratTracker.fastsObserved} {observedCount}</span>
+                  <span>{translations[language].vratTracker.totalFasts} {totalCount}</span>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {sawanMondays.map((monday, index) => {
+                    const isObserved = vratStatus.find(v => v.date === monday.date)?.observed || false;
+                    return (
+                      <div
+                        key={index}
+                        className={`flex items-center p-4 rounded-xl shadow-sm border transition-all duration-200 cursor-pointer
+                          ${isObserved ? (darkMode ? 'bg-green-800 border-green-700' : 'bg-green-50 border-green-300') : (darkMode ? 'bg-gray-700 border-gray-600' : 'bg-indigo-50 border-indigo-200')}`}
+                        onClick={() => handleToggleVrat(monday.date)}
+                      >
+                        <input
+                          type="checkbox"
+                          checked={isObserved}
+                          onChange={() => handleToggleVrat(monday.date)}
+                          className={`form-checkbox h-6 w-6 rounded focus:ring-opacity-50 mr-4 cursor-pointer ${darkMode ? 'text-green-500 border-gray-500 bg-gray-600 focus:ring-green-400 checked:bg-green-500 checked:border-green-500' : 'text-indigo-600 border-indigo-400 bg-white focus:ring-indigo-500'}`}
+                        />
+                        <span className={`text-lg ${isObserved ? (darkMode ? 'line-through text-gray-400' : 'line-through text-gray-500') : (darkMode ? 'text-gray-100' : 'text-gray-800')}`}>
+                          {monday.date} ({translations[language].vratTracker.monday}) - {isObserved ? translations[language].vratTracker.observed : translations[language].vratTracker.notObserved}
+                        </span>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            );
+          };
+
+          // Shiv Chalisa Component
+          const ShivChalisa = () => {
+            const [fontSize, setFontSize] = useState(16);
+
+            const increaseFontSize = () => {
+              setFontSize(prevSize => Math.min(prevSize + 2, 24));
+            };
+
+            const decreaseFontSize = () => {
+              setFontSize(prevSize => Math.max(prevSize - 2, 12));
+            };
+
+            return (
+              <div className={`p-6 rounded-3xl shadow-2xl m-4 max-w-5xl mx-auto animate-fade-in-up ${darkMode ? 'bg-gray-800 text-gray-100' : 'bg-white text-gray-800'}`}>
+                <h2 className={`text-4xl font-extrabold mb-8 text-center ${darkMode ? 'text-indigo-400' : 'text-indigo-800'}`}>
+                  {translations[language].shivChalisa.title}
+                </h2>
+
+                <div className="flex justify-center items-center mb-6 gap-4">
+                  <span className={`${darkMode ? 'text-gray-300' : 'text-gray-700'} text-lg font-semibold`}>
+                    {translations[language].shivChalisa.fontSize}
+                  </span>
+                  <button
+                    onClick={decreaseFontSize}
+                    className={`font-semibold py-2 px-4 rounded-full shadow-md transition duration-300 ease-in-out transform hover:scale-105 ${darkMode ? 'bg-gray-700 hover:bg-gray-600 text-white' : 'bg-indigo-600 hover:bg-indigo-700 text-white'}`}
+                  >
+                    {translations[language].shivChalisa.decreaseFont}
+                  </button>
+                  <button
+                    onClick={increaseFontSize}
+                    className={`font-semibold py-2 px-4 rounded-full shadow-md transition duration-300 ease-in-out transform hover:scale-105 ${darkMode ? 'bg-gray-700 hover:bg-gray-600 text-white' : 'bg-indigo-600 hover:bg-indigo-700 text-white'}`}
+                  >
+                    {translations[language].shivChalisa.increaseFont}
+                  </button>
+                </div>
+
+                <div
+                  className={`p-8 rounded-2xl shadow-lg text-lg leading-loose font-serif border overflow-y-auto max-h-[60vh] ${darkMode ? 'bg-gray-700 border-gray-600 text-gray-100' : 'bg-indigo-50 border-indigo-200 text-gray-800'}`}
+                  style={{ fontSize: `${fontSize}px` }}
+                >
+                  {translations[language].shivChalisa.text.split('\n').map((line, index) => (
+                    <p key={index} className="mb-2">{line}</p>
+                  ))}
+                </div>
+              </div>
+            );
+          };
+
+          // Sawan Calendar Component
+          const SawanCalendar = () => {
+            const sawanDates = translations[language].sawanCalendar.dates;
+
+            return (
+              <div className={`p-6 rounded-3xl shadow-2xl m-4 max-w-5xl mx-auto animate-fade-in-up ${darkMode ? 'bg-gray-800 text-gray-100' : 'bg-white text-gray-800'}`}>
+                <h2 className={`text-4xl font-extrabold mb-8 text-center ${darkMode ? 'text-indigo-400' : 'text-indigo-800'}`}>
+                  {translations[language].sawanCalendar.title}
+                </h2>
+                <p className={`text-lg mb-6 text-center ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                  {translations[language].sawanCalendar.description}
+                </p>
+                <div className="overflow-x-auto">
+                  <table className={`min-w-full rounded-xl shadow-md border ${darkMode ? 'bg-gray-700 border-gray-600' : 'bg-indigo-50 border-indigo-200'}`}>
+                    <thead>
+                      <tr className={`${darkMode ? 'bg-gray-600 text-gray-100' : 'bg-indigo-600 text-white'}`}>
+                        <th className="py-3 px-4 text-left text-lg font-semibold rounded-tl-xl">{translations[language].sawanCalendar.tableHeaders.date}</th>
+                        <th className="py-3 px-4 text-left text-lg font-semibold">{translations[language].sawanCalendar.tableHeaders.day}</th>
+                        <th className="py-3 px-4 text-left text-lg font-semibold rounded-tr-xl">{translations[language].sawanCalendar.tableHeaders.significance}</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {sawanDates.map((event, index) => (
+                        <tr key={index} className={`border-b ${darkMode ? 'border-gray-600' : 'border-indigo-200'} ${event.day === (language === 'en' ? 'Monday' : 'सोमवार') ? (darkMode ? 'bg-gray-600 font-semibold text-indigo-300' : 'bg-indigo-100 font-semibold text-indigo-800') : (darkMode ? 'hover:bg-gray-600' : 'hover:bg-indigo-50')}`}>
+                          <td className="py-3 px-4 text-lg">{event.date}</td>
+                          <td className="py-3 px-4 text-lg">{event.day}</td>
+                          <td className="py-3 px-4 text-lg">{event.significance}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+                <p className={`text-sm mt-6 text-center ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+                  {translations[language].sawanCalendar.notes}
+                </p>
+              </div>
+            );
+          };
+
+          // Pooja Checklist Component
+          const PoojaChecklist = () => {
+            const initialItems = translations.en.poojaChecklist.items.map(item => ({
+              ...item,
+              checked: false
+            }));
+            const [items, setItems] = useState(() => {
+                const savedItems = localStorage.getItem('poojaChecklistItems');
+                if (savedItems) {
+                    const parsedItems = JSON.parse(savedItems);
+                    // Merge saved checked states with current language names
+                    return initialItems.map(item => {
+                        const savedItem = parsedItems.find(si => si.id === item.id);
+                        return savedItem ? { ...item, checked: savedItem.checked } : item;
+                    });
+                }
+                return initialItems;
+            });
+
+            useEffect(() => {
+                localStorage.setItem('poojaChecklistItems', JSON.stringify(items.map(item => ({ id: item.id, checked: item.checked }))));
+            }, [items]);
+
+            const handleToggle = (id) => {
+              setItems(prevItems => {
+                const newItems = prevItems.map(item =>
+                  item.id === id ? { ...item, checked: !item.checked } : item
+                );
+                return newItems;
+              });
+            };
+
+            return (
+              <div className={`p-6 rounded-3xl shadow-2xl m-4 max-w-5xl mx-auto animate-fade-in-up ${darkMode ? 'bg-gray-800 text-gray-100' : 'bg-white text-gray-800'}`}>
+                <h2 className={`text-4xl font-extrabold mb-8 text-center ${darkMode ? 'text-indigo-400' : 'text-indigo-800'}`}>
+                  {translations[language].poojaChecklist.title}
+                </h2>
+                <p className={`text-lg mb-6 text-center ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                  {translations[language].poojaChecklist.description}
+                </p>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {items.map(item => (
+                    <div
+                      key={item.id}
+                      className={`flex items-center p-4 rounded-xl shadow-sm border ${item.checked ? (darkMode ? 'bg-green-800 border-green-700' : 'bg-green-50 border-green-300') : (darkMode ? 'bg-gray-700 border-gray-600' : 'bg-indigo-50 border-indigo-200')} transition-all duration-200 cursor-pointer`}
+                      onClick={() => handleToggle(item.id)}
+                    >
+                      <input
+                        type="checkbox"
+                        checked={item.checked}
+                        onChange={() => handleToggle(item.id)}
+                        className={`form-checkbox h-6 w-6 rounded focus:ring-opacity-50 mr-4 cursor-pointer ${darkMode ? 'text-green-500 border-gray-500 bg-gray-600 focus:ring-green-400 checked:bg-green-500 checked:border-green-500' : 'text-indigo-600 border-indigo-400 bg-white focus:ring-indigo-500'}`}
+                      />
+                      <span className={`text-lg ${item.checked ? (darkMode ? 'line-through text-gray-400' : 'line-through text-gray-500') : (darkMode ? 'text-gray-100' : 'text-gray-800')}`}>
+                        {translations[language].poojaChecklist.items.find(tItem => tItem.id === item.id)?.name || item.name}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            );
+          };
+
+          // About Sawan Component
+          const AboutSawan = () => (
+            <div className={`p-6 rounded-3xl shadow-2xl m-4 max-w-5xl mx-auto animate-fade-in-up ${darkMode ? 'bg-gray-800 text-gray-100' : 'bg-white text-gray-800'}`}>
+              <h2 className={`text-4xl font-extrabold mb-8 text-center ${darkMode ? 'text-indigo-400' : 'text-indigo-800'}`}>
+                {translations[language].aboutSawan.title}
+              </h2>
+              <div className={`p-8 rounded-2xl shadow-lg text-lg leading-relaxed border ${darkMode ? 'bg-gray-700 border-gray-600 text-gray-100' : 'bg-indigo-50 border-indigo-200 text-gray-800'}`}>
+                <p className="mb-4">
+                  {translations[language].aboutSawan.intro}
+                </p>
+                <h3 className={`text-2xl font-bold mb-3 mt-6 ${darkMode ? 'text-indigo-300' : 'text-indigo-700'}`}>
+                  {translations[language].aboutSawan.significanceTitle}
+                </h3>
+                <ul className="list-disc list-inside space-y-2 mb-4">
+                  {translations[language].aboutSawan.points.map((point, index) => (
+                    <li key={index}>
+                      <strong className={`${darkMode ? 'text-indigo-300' : 'text-indigo-600'}`}>{point.strong}</strong> {point.text}
+                    </li>
+                  ))}
+                </ul>
+                <p>
+                </p>
+              </div>
+            </div>
+          );
+
+          // Share Button Component
+          const ShareButton = () => {
+            const handleShare = () => {
+              const appUrl = window.location.href;
+              if (navigator.share) {
+                navigator.share({
+                  title: 'Shiv Pooja (Sawan) App',
+                  text: translations[language].shareApp,
+                  url: appUrl,
+                })
+                .then(() => console.log('Shared successfully'))
+                .catch((error) => console.error('Error sharing:', error));
+              } else {
+                const el = document.createElement('textarea');
+                el.value = appUrl;
+                document.body.appendChild(el);
+                el.select();
+                document.execCommand('copy');
+                document.body.removeChild(el);
+                alert(language === 'en' ? 'App link copied to clipboard! Share with your friends and family.' : 'ऐप लिंक क्लिपबोर्ड पर कॉपी हो गया! अपने दोस्तों और परिवार के साथ साझा करें।'rrentPage === 'checklist' && <PoojaChecklist />}
+                {currentPage === 'dailyMantra' && <DailyMantra />}
+                {currentPage === 'vratTracker' && <VratTracker />}
+                {currentPage === 'shivChalisa' && <ShivChalisa />}
+                {currentPage === 'about' && <AboutSawan />}
+              </div>
+              <ShareButton />
+              <DailyFactModal isOpen={isFactModalOpen} onClose={closeFactModal} fact={dailyFact} darkMode={darkMode} />
+            </div>
+          );
+        };
+
+        ReactDOM.render(<App />, document.getElementById('root'));
+    </script>
+
+<script async="async" data-cfasync="false" src="//pl27011799.profitableratecpm.com/0cfc62c307d413eb4c05a690c24d49ec/invoke.js"></script>
+<div id="container-0cfc62c307d413eb4c05a690c24d49ec"></div>
+
 </body>
-</html>
+  </html>
